@@ -10,9 +10,26 @@
 
 using namespace std;
 
-struct _sistema{
+typedef tipo_persona* Persona;
+struct tipo_persona{
+	Cadena ci;
+	Cadena nom;
+};
+
+
+typedef tipo_empleado* Empleado;
+struct tipo_empleado{
+	Persona persona;
+	Cadena alta;
+};
+
+
+struct nodo_empresa{
 	// aquí deben figurar los campos que usted considere necesarios para manipular el organigrama.
 	// Se deberan crear nuevos modulos e incluirlos.
+	Empleado empleados;
+	Empresa ph;
+	Empresa sh;
 };
 
 TipoRet CrearOrg(Empresa &e, Cadena cargo){
