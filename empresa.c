@@ -33,6 +33,7 @@ struct nodo_empresa{
 	Cadena cargo;
 	Empresa ph;
 	Empresa sh;
+	//Empresa padre;
 };
 
 TipoRet CrearOrg(Empresa &e, Cadena cargo){
