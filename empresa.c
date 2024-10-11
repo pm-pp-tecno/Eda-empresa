@@ -21,6 +21,8 @@ typedef tipo_empleado* Empleado;
 struct tipo_empleado{
 	Persona persona;
 	Cadena alta;
+	Empleado sig;
+	Empleado ant;
 };
 
 
@@ -28,6 +30,7 @@ struct nodo_empresa{
 	// aquí deben figurar los campos que usted considere necesarios para manipular el organigrama.
 	// Se deberan crear nuevos modulos e incluirlos.
 	Empleado empleados;
+	Cadena cargo;
 	Empresa ph;
 	Empresa sh;
 };
