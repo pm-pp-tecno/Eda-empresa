@@ -45,14 +45,30 @@ struct tipo_empleado{
 };
 
 
-struct nodo_empresa{
-	// aquí deben figurar los campos que usted considere necesarios para manipular el organigrama.
-	// Se deberan crear nuevos modulos e incluirlos.
+typedef arbol_emp* ArbolEmp;
+struct arbol_emp{
 	Cadena cargo;
 	Empleado empleados;
 	Empresa ph;
 	Empresa sh;
 	//Empresa padre;
+};
+
+
+struct nodo_empresa{
+	// aquí deben figurar los campos que usted considere necesarios para manipular el organigrama.
+	// Se deberan crear nuevos modulos e incluirlos.
+	/*
+	Cadena cargo;
+	Empleado empleados;
+	Empresa ph;
+	Empresa sh;
+	//Empresa padre;
+	*/
+	Cadena nombreEmp;
+	ArbolEmp arbolCargos;
+	Planilla planilla;
+	Cargo listaCargos;
 };
 
 TipoRet CrearOrg(Empresa &e, Cadena cargo){
@@ -63,11 +79,32 @@ TipoRet CrearOrg(Empresa &e, Cadena cargo){
 		return ERROR;
 	} else {
 		e = new(nodo_empresa);
+		
+		// Nombre de la empresa
+		Cadena nombreEmp = new(char*[100]);
+		nombreEmp = "EDA Empresa";
+		e->nombreEmp = nombreEmp;
+
+		// Planilla general ordenada de empleados de la empresa
+		Planilla planilla = new(tipo_planilla);
+		e->planilla = planilla;
+
+		// Se genera la lista de cargos en orden alfabetico
+		Cargo listaCargos = new(tipo_cargo);
+		e->listaCargos = listaCargos;
+
+
+		// Empleados en un cargo
 		Empleado empleados = new(tipo_empleado);
-		e->cargo = cargo;
-		e->empleados = empleados;
-		e->ph = NULL;
-		e->sh = NULL;
+		
+		// Creacion del arbol jerarquico
+		ArbolEmp arbolCargos = new(arbol_emp);
+		arbolCargos->cargo = cargo;
+		arbolCargos->empleados = empleados;
+		arbolCargos->ph = NULL;
+		arbolCargos->sh = NULL;
+		e->arbolCargos = arbolCargos;
+
 	}
 	return OK;
 }
@@ -94,6 +131,20 @@ TipoRet NuevoCargo(Empresa &e, Cadena cargoPadre, Cadena nuevoCargo){
 		emp_ph->ph = NULL;
 		emp_ph->sh = padre->ph;
 		padre->ph = emp_ph;
+
+		// Actualizo tambien la lista de cargos en orden alfabetico
+
+		// e->listaCargos
+
+		typedef tipo_cargo* Cargo;
+		struct tipo_cargo{
+			Cadena cargo;
+			Cadena padre;
+			Cargo sig;
+			Cargo ant;
+		};
+
+
 	} else if ($padre == NULL) {
 		cout << " - ERROR: El padre no existe.\n";
 		return ERROR;
