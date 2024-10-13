@@ -17,6 +17,15 @@ struct tipo_persona{
 };
 
 
+typedef tipo_planilla* Planilla;
+struct tipo_planilla{
+	Persona persona;
+	Cadena alta;
+	Cadena cargo;
+	Planilla sig;
+	Planilla ant;
+};
+
 typedef tipo_empleado* Empleado;
 struct tipo_empleado{
 	Persona persona;
