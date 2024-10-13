@@ -26,6 +26,16 @@ struct tipo_planilla{
 	Planilla ant;
 };
 
+
+typedef tipo_cargos* Cargo;
+struct tipo_cargos{
+	Cadena cargo;
+	Cadena padre;
+	Cargo sig;
+	Cargo ant;
+};
+
+
 typedef tipo_empleado* Empleado;
 struct tipo_empleado{
 	Persona persona;
