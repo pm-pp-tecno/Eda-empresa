@@ -27,7 +27,7 @@ struct tipo_planilla{
 };
 
 
-typedef tipo_cargos* Cargo;
+typedef tipo_cargo* Cargo;
 struct tipo_cargos{
 	Cadena cargo;
 	Cadena padre;
