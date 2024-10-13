@@ -29,8 +29,8 @@ struct tipo_empleado{
 struct nodo_empresa{
 	// aquí deben figurar los campos que usted considere necesarios para manipular el organigrama.
 	// Se deberan crear nuevos modulos e incluirlos.
-	Empleado empleados;
 	Cadena cargo;
+	Empleado empleados;
 	Empresa ph;
 	Empresa sh;
 	//Empresa padre;
@@ -38,8 +38,19 @@ struct nodo_empresa{
 
 TipoRet CrearOrg(Empresa &e, Cadena cargo){
 // Inicializa la empresa y crea el primer cargo de la empresa.
-// Originalmente la misma debería  estar vacía, en otro caso la operación quedará sin efecto. 
-	return NO_IMPLEMENTADA;
+// Originalmente la misma debería  estar vacía, en otro caso la operación quedará sin efecto.
+	if (e != NULL){
+		cout << " - ERROR: para ejecutar el comando el organigrama NO debe estar creado.\n";
+		return ERROR;
+	} else {
+		e = new(nodo_empresa);
+		Empleado empleados = new(tipo_empleado);
+		e->cargo = cargo;
+		e->empleados = empleados;
+		e->ph = NULL;
+		e->sh = NULL;
+	}
+	return OK;
 }
 
 TipoRet EliminarOrg(Empresa &e){
@@ -50,7 +61,29 @@ TipoRet EliminarOrg(Empresa &e){
 TipoRet NuevoCargo(Empresa &e, Cadena cargoPadre, Cadena nuevoCargo){
 // Insertar un nuevo cargo como dependiente de otro ya existente.
 // El nuevo cargo no debe existir en el sistema.
-	return NO_IMPLEMENTADA;
+	/*
+	Empresa $padre;
+	bool $existe_cargo;
+	//Busquedas en funciones auxiliares
+	$padre = buscar_padre(e, cargoPadre);
+	$existe_cargo = buscar_cargo(e, nuevoCargo);
+	if ($padre != NULL && !$existe_cargo){
+		emp_ph = new(nodo_empresa);
+		Empleado empleados = new(tipo_empleado);
+		emp_ph->cargo = nuevoCargo;
+		emp_ph->empleados = empleados;
+		emp_ph->ph = NULL;
+		emp_ph->sh = padre->ph;
+		padre->ph = emp_ph;
+	} else if ($padre == NULL) {
+		cout << " - ERROR: El padre no existe.\n";
+		return ERROR;
+	} else  {
+		cout << " - ERROR: Ese cargo ya existe.\n";
+		return ERROR;
+	}
+	*/
+	return OK;
 }
 
 TipoRet EliminarCargo(Empresa &e, Cadena cargo){
