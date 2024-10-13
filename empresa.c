@@ -28,7 +28,7 @@ struct tipo_planilla{
 
 
 typedef tipo_cargo* Cargo;
-struct tipo_cargos{
+struct tipo_cargo{
 	Cadena cargo;
 	Cadena padre;
 	Cargo sig;
