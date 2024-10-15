@@ -20,5 +20,9 @@ typedef tipo_planilla* Planilla;
 
 
 
-TipoRet CrearEmpleado();
+Empleado CrearEmpleado();
 // Inicializa el empleado.
+
+
+Planilla CrearPlanilla();
+// Inicializa la planilla.

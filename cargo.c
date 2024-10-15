@@ -24,3 +24,10 @@ Cargo CrearCargo(){
 // Inicializa el empleado.
 	return NULL;
 }
+
+
+Cargo buscar_cargo(Cargo listaCargos, Cadena cargo){
+// Buscar el cargo en la lista de cargos
+	Cargo cargo = new(tipo_cargo);
+	return cargo;
+}

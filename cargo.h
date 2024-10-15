@@ -14,5 +14,8 @@ typedef tipo_cargo* Cargo;
 
 
 
-TipoRet CrearCargo();
+Cargo CrearCargo();
 // Inicializa el cargo.
+
+Cargo buscar_cargo(Cargo listaCargos, Cadena cargo);
+// Buscar el cargo en la lista de cargos

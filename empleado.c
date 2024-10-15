@@ -34,7 +34,13 @@ struct tipo_planilla{
 };
 
 
-TipoRet CrearEmpleado(){
+Empleado CrearEmpleado(){
 // Inicializa el empleado.
+	return NULL;
+}
+
+
+Planilla CrearPlanilla(){
+// Inicializa la planilla.
 	return NULL;
 }

@@ -47,7 +47,8 @@ TipoRet CrearOrg(Empresa &e, Cadena cargo){
 		e->nombreEmp = nombreEmp;
 
 		// Planilla general ordenada de empleados de la empresa
-		Planilla planilla = new(tipo_planilla);
+		//Planilla planilla = new(tipo_planilla);
+		Planilla planilla = CrearPlanilla();
 		e->planilla = planilla;
 
 		// Se genera la lista de cargos en orden alfabetico
@@ -61,6 +62,7 @@ TipoRet CrearOrg(Empresa &e, Cadena cargo){
 		//Empleado empleados = new(tipo_empleado);
 		Empleado empleados = CrearEmpleado();
 
+		ArbolEmp arbolCargos = crearOrganigrama(&empleados);
 		
 		// Creacion del arbol jerarquico
 		ArbolEmp arbolCargos = new(arbol_emp);
@@ -86,15 +88,13 @@ TipoRet NuevoCargo(Empresa &e, Cadena cargoPadre, Cadena nuevoCargo){
 		return NULL;
 	}
 	
-	Empresa padre;
-	bool existe_cargo;
 	//Busquedas en funciones auxiliares
-	padre = buscar_padre(e, cargoPadre);
-	existe_cargo = buscar_cargo(e, nuevoCargo);
-	if (padre != NULL && !existe_cargo){
+	Cargo padre = buscar_cargo(e->listaCargos, cargoPadre);
+	Cargo cargo = buscar_cargo(e->listaCargos, nuevoCargo);
+	
+	if (padre != NULL && cargo == NULL){
 
-		insertarCargoOrdenado(&e->listaCargos, cargoPadre, nuevoCargo); //devuelve bool, falta funcion
-		
+		insertarCargoOrdenado(&e->listaCargos, cargoPadre, nuevoCargo);
 		insertarOrganigrama(&e->listaCargos, cargoPadre, nuevoCargo);
 		/*
 		Dentro de insertarOrganigrama
@@ -133,20 +133,6 @@ TipoRet NuevoCargo(Empresa &e, Cadena cargoPadre, Cadena nuevoCargo){
 	return OK;
 }
 
-arbol buscar_padre(Empresa &e, Cadena cargoPadre){
-	if (arbol == NULL){
-		return NULL;
-	}else if (strcasecmp(arbol->cargo, cargoPadre) == 0){
-		return arbol;
-	}else{
-		ArbolEmp encontrado = buscar_padre(arbol->ph, cargoPadre);
-		if (encontrado != NULL){
-			return encontrado;
-		}else{
-			return buscar_padre(arbol->sh, cargoPadre);
-		}
-	}
-}
 
 TipoRet EliminarCargo(Empresa &e, Cadena cargo){
 // Eliminar un cargo, junto con sus subcargos y personas asociadas.
