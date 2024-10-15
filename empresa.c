@@ -6,43 +6,11 @@
 // Modulo de Implementacion de la Empresa
 
 #include "empresa.h"
+#include "empleado.h"
+#include "cargo.h"
 #include <iostream>
 
 using namespace std;
-
-typedef tipo_persona* Persona;
-struct tipo_persona{
-	Cadena ci;
-	Cadena nom;
-};
-
-
-typedef tipo_planilla* Planilla;
-struct tipo_planilla{
-	Persona persona;
-	Cadena alta;
-	Cadena cargo;
-	Planilla sig;
-	Planilla ant;
-};
-
-
-typedef tipo_cargo* Cargo;
-struct tipo_cargo{
-	Cadena cargo;
-	Cadena padre;
-	Cargo sig;
-	Cargo ant;
-};
-
-
-typedef tipo_empleado* Empleado;
-struct tipo_empleado{
-	Persona persona;
-	Cadena alta;
-	Empleado sig;
-	Empleado ant;
-};
 
 
 typedef arbol_emp* ArbolEmp;
@@ -58,13 +26,6 @@ struct arbol_emp{
 struct nodo_empresa{
 	// aquí deben figurar los campos que usted considere necesarios para manipular el organigrama.
 	// Se deberan crear nuevos modulos e incluirlos.
-	/*
-	Cadena cargo;
-	Empleado empleados;
-	Empresa ph;
-	Empresa sh;
-	//Empresa padre;
-	*/
 	Cadena nombreEmp;
 	ArbolEmp arbolCargos;
 	Planilla planilla;
@@ -90,12 +51,16 @@ TipoRet CrearOrg(Empresa &e, Cadena cargo){
 		e->planilla = planilla;
 
 		// Se genera la lista de cargos en orden alfabetico
-		Cargo listaCargos = new(tipo_cargo);
+		//Cargo listaCargos = new(tipo_cargo);
+		Cargo listaCargos = CrearCargo(cargo);
+
 		e->listaCargos = listaCargos;
 
 
 		// Empleados en un cargo
-		Empleado empleados = new(tipo_empleado);
+		//Empleado empleados = new(tipo_empleado);
+		Empleado empleados = CrearEmpleado();
+
 		
 		// Creacion del arbol jerarquico
 		ArbolEmp arbolCargos = new(arbol_emp);
@@ -171,7 +136,7 @@ TipoRet NuevoCargo(Empresa &e, Cadena cargoPadre, Cadena nuevoCargo){
 arbol buscar_padre(Empresa &e, Cadena cargoPadre){
 	if (arbol == NULL){
 		return NULL;
-	}else if (strcmp(arbol->cargo, cargoPadre) == 0){
+	}else if (strcasecmp(arbol->cargo, cargoPadre) == 0){
 		return arbol;
 	}else{
 		ArbolEmp encontrado = buscar_padre(arbol->ph, cargoPadre);
