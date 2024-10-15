@@ -117,20 +117,32 @@ TipoRet EliminarOrg(Empresa &e){
 TipoRet NuevoCargo(Empresa &e, Cadena cargoPadre, Cadena nuevoCargo){
 // Insertar un nuevo cargo como dependiente de otro ya existente.
 // El nuevo cargo no debe existir en el sistema.
-	/*
-	Empresa $padre;
-	bool $existe_cargo;
+	if (e == NULL){
+		return NULL;
+	}
+	
+	Empresa padre;
+	bool existe_cargo;
 	//Busquedas en funciones auxiliares
-	$padre = buscar_padre(e, cargoPadre);
-	$existe_cargo = buscar_cargo(e, nuevoCargo);
-	if ($padre != NULL && !$existe_cargo){
-		emp_ph = new(nodo_empresa);
+	padre = buscar_padre(e, cargoPadre);
+	existe_cargo = buscar_cargo(e, nuevoCargo);
+	if (padre != NULL && !existe_cargo){
+
+		insertarCargoOrdenado(&e->listaCargos, cargoPadre, nuevoCargo); //devuelve bool, falta funcion
+		
+		insertarOrganigrama(&e->listaCargos, cargoPadre, nuevoCargo);
+		/*
+		Dentro de insertarOrganigrama
+		//Empleados en un cargo
 		Empleado empleados = new(tipo_empleado);
-		emp_ph->cargo = nuevoCargo;
-		emp_ph->empleados = empleados;
-		emp_ph->ph = NULL;
-		emp_ph->sh = padre->ph;
-		padre->ph = emp_ph;
+		
+		//Creacion del arbol jerarquico
+		ArbolEmp arbolCargos = new(arbol_emp);
+		arbolCargos->cargo = cargo;
+		arbolCargos->empleados = empleados;
+		arbolCargos->ph = NULL;
+		arbolCargos->sh = NULL;
+		e->arbolCargos = arbolCargos;
 
 		// Actualizo tambien la lista de cargos en orden alfabetico
 
@@ -143,17 +155,32 @@ TipoRet NuevoCargo(Empresa &e, Cadena cargoPadre, Cadena nuevoCargo){
 			Cargo sig;
 			Cargo ant;
 		};
+		*/
 
-
-	} else if ($padre == NULL) {
+	} else if (padre == NULL) {
 		cout << " - ERROR: El padre no existe.\n";
 		return ERROR;
 	} else  {
 		cout << " - ERROR: Ese cargo ya existe.\n";
 		return ERROR;
 	}
-	*/
+	
 	return OK;
+}
+
+arbol buscar_padre(Empresa &e, Cadena cargoPadre){
+	if (arbol == NULL){
+		return NULL;
+	}else if (strcmp(arbol->cargo, cargoPadre) == 0){
+		return arbol;
+	}else{
+		ArbolEmp encontrado = buscar_padre(arbol->ph, cargoPadre);
+		if (encontrado != NULL){
+			return encontrado;
+		}else{
+			return buscar_padre(arbol->sh, cargoPadre);
+		}
+	}
 }
 
 TipoRet EliminarCargo(Empresa &e, Cadena cargo){
