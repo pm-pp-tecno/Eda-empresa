@@ -23,4 +23,5 @@ struct tipo_cargo{
 Cargo CrearCargo(){
 // Inicializa el empleado.
 	return NULL;
-}
+}kjbñkjbñjbñkjbkjb
+ñkjñljnn
