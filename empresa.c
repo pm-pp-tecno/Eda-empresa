@@ -8,6 +8,7 @@
 #include "empresa.h"
 #include "empleado.h"
 #include "cargo.h"
+#include <cstring>
 #include <iostream>
 
 using namespace std;
@@ -17,9 +18,11 @@ typedef arbol_emp* ArbolEmp;
 struct arbol_emp{
 	Cadena cargo;
 	Empleado empleados;
-	Empresa ph;
-	Empresa sh;
+	//Empresa ph;
+	//Empresa sh;
 	//Empresa padre;
+	ArbolEmp ph;
+	ArbolEmp sh;
 };
 
 
@@ -48,15 +51,20 @@ TipoRet CrearOrg(Empresa &e, Cadena cargo){
 
 		// Planilla general ordenada de empleados de la empresa
 		//Planilla planilla = new(tipo_planilla);
+		/*
 		Planilla planilla = CrearPlanilla();
 		e->planilla = planilla;
+		*/
+		e->planilla = CrearPlantilla();
 
 		// Se genera la lista de cargos en orden alfabetico
 		//Cargo listaCargos = new(tipo_cargo);
+		/*
 		Cargo listaCargos = CrearCargo(cargo);
 
 		e->listaCargos = listaCargos;
-
+		*/
+		e->listaCargos = CrearCargo(cargo, NULL);
 
 		// Empleados en un cargo
 		//Empleado empleados = new(tipo_empleado);
@@ -71,9 +79,9 @@ TipoRet CrearOrg(Empresa &e, Cadena cargo){
 		arbolCargos->ph = NULL;
 		arbolCargos->sh = NULL;
 		e->arbolCargos = arbolCargos;
-
+		
+		return OK;
 	}
-	return OK;
 }
 
 TipoRet EliminarOrg(Empresa &e){
@@ -85,7 +93,8 @@ TipoRet NuevoCargo(Empresa &e, Cadena cargoPadre, Cadena nuevoCargo){
 // Insertar un nuevo cargo como dependiente de otro ya existente.
 // El nuevo cargo no debe existir en el sistema.
 	if (e == NULL){
-		return NULL;
+		cout << " - ERROR: La empresa no está creada.\n";
+        return ERROR;
 	}
 	
 	//Busquedas en funciones auxiliares
@@ -121,7 +130,7 @@ TipoRet NuevoCargo(Empresa &e, Cadena cargoPadre, Cadena nuevoCargo){
 			Cargo ant;
 		};
 		*/
-
+		return OK;
 	} else if (padre == NULL) {
 		cout << " - ERROR: El padre no existe.\n";
 		return ERROR;
@@ -129,8 +138,6 @@ TipoRet NuevoCargo(Empresa &e, Cadena cargoPadre, Cadena nuevoCargo){
 		cout << " - ERROR: Ese cargo ya existe.\n";
 		return ERROR;
 	}
-	
-	return OK;
 }
 
 

@@ -10,13 +10,13 @@
 
 
 
-typedef tipo_persona* Persona;
+typedef struct tipo_persona* Persona;
 
 
-typedef tipo_empleado* Empleado;
+typedef struct tipo_empleado* Empleado;
 
 
-typedef tipo_planilla* Planilla;
+typedef struct tipo_planilla* Planilla;
 
 
 
@@ -26,3 +26,5 @@ Empleado CrearEmpleado();
 
 Planilla CrearPlanilla();
 // Inicializa la planilla.
+
+#endif

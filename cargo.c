@@ -6,6 +6,7 @@
 // Modulo de Implementacion del Empleado
 
 #include "cargo.h"
+#include <cstring>
 #include <iostream>
 
 using namespace std;
@@ -20,14 +21,29 @@ struct tipo_cargo{
 
 
 
-Cargo CrearCargo(){
-// Inicializa el empleado.
-	return NULL;
+Cargo CrearCargo(Cadena nuevoCargo, Cadena cargoPadre){
+// crea el nuevo cargo.
+	Cargo nuevo = new(tipo_cargo);
+	nuevo->cargo = nuevoCargo;
+	nuevo->padre = cargoPadre;
+	nuevo->sig = NULL;
+	nuevo->ant = NULL;
+	return nuevo;
 }
 
 
 Cargo buscar_cargo(Cargo listaCargos, Cadena cargo){
 // Buscar el cargo en la lista de cargos
-	Cargo cargo = new(tipo_cargo);
-	return cargo;
+	while (listaCargos != NULL){
+		if (strcmp(listaCargos->cargo, cargo) == 0){
+			return listaCargos;
+		}else{
+			listaCargos = listaCargos->sig;
+		}
+	}
+	return NULL;
+}
+
+void insertarCargoOrdenado(Cargo &listaCargos, Cadena cargoPadre, Cadena nuevoCargo){
+	return NULL; //en un principio
 }
