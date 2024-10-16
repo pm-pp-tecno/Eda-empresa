@@ -20,17 +20,24 @@ struct tipo_persona{
 struct tipo_empleado{
 	Persona persona;
 	Cadena alta;
-	Empleado sig;
-	Empleado ant;
+	ArbolEmp arbolCargo;
 };
 
 
-struct tipo_planilla{
-	Persona persona;
-	Cadena alta;
-	Cadena cargo;
-	Planilla sig;
-	Planilla ant;
+// Lista de empleados de un CARGO
+struct lista_empleados{
+	Empleado empleado;
+	ListaEmp sig;
+	ListaEmp ant;
+};
+
+
+// Plantilla general de empleados en la empresa
+// Lista ordenada contiene a todos los empleados
+struct tipo_plantilla{
+	Empleado empleado;
+	Plantilla sig;
+	Plantilla ant;
 };
 
 
@@ -40,7 +47,7 @@ Empleado CrearEmpleado(){
 }
 
 
-Planilla CrearPlanilla(){
-// Inicializa la planilla.
+Plantilla CrearPlantilla(){
+// Inicializa la plantilla.
 	return NULL;
 }

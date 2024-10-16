@@ -15,12 +15,9 @@ using namespace std;
 
 
 typedef arbol_emp* ArbolEmp;
+
 struct arbol_emp{
-	Cadena cargo;
-	Empleado empleados;
-	//Empresa ph;
-	//Empresa sh;
-	//Empresa padre;
+	Cargo cargo;
 	ArbolEmp ph;
 	ArbolEmp sh;
 };
@@ -30,9 +27,9 @@ struct nodo_empresa{
 	// aquí deben figurar los campos que usted considere necesarios para manipular el organigrama.
 	// Se deberan crear nuevos modulos e incluirlos.
 	Cadena nombreEmp;
-	ArbolEmp arbolCargos;
-	Planilla planilla;
-	Cargo listaCargos;
+	ArbolEmp organigrama;
+	Plantilla plantilla;
+	ListaCargos listaCargos;
 };
 
 TipoRet CrearOrg(Empresa &e, Cadena cargo){
@@ -49,13 +46,13 @@ TipoRet CrearOrg(Empresa &e, Cadena cargo){
 		nombreEmp = "EDA Empresa";
 		e->nombreEmp = nombreEmp;
 
-		// Planilla general ordenada de empleados de la empresa
-		//Planilla planilla = new(tipo_planilla);
+		// Plantilla general ordenada de empleados de la empresa
+		//Plantilla plantilla = new(tipo_plantilla);
 		/*
-		Planilla planilla = CrearPlanilla();
-		e->planilla = planilla;
+		Plantilla plantilla = CrearPlantilla();
+		e->plantilla = plantilla;
 		*/
-		e->planilla = CrearPlantilla();
+		e->plantilla = CrearPlantilla();
 
 		// Se genera la lista de cargos en orden alfabetico
 		//Cargo listaCargos = new(tipo_cargo);

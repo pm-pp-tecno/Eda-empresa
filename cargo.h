@@ -10,6 +10,9 @@
 
 typedef struct tipo_cargo* Cargo;
 
+typedef struct lista_cargos* ListaCargos;
+
+
 Cargo CrearCargo();
 // Inicializa el cargo.
 
