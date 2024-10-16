@@ -20,7 +20,7 @@ struct tipo_persona{
 struct tipo_empleado{
 	Persona persona;
 	Cadena alta;
-	ArbolEmp arbolCargo;
+	Cargo cargo;
 };
 
 
