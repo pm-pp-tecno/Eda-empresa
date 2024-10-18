@@ -137,7 +137,3 @@ Cargo buscar_cargo(ListaCargos listaCargos, Cadena cargo) {
     return NULL;
 }
 */
-
-void InsertarCargoOrdenado(Cargo &listaCargos, Cadena cargoPadre, Cadena nuevoCargo){
-	return NULL; //en un principio
-}

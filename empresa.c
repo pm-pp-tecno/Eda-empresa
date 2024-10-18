@@ -7,6 +7,7 @@
 
 #include "cargo.h"
 #include "empresa.h"
+#include "organigrama.h"
 
 #include <cstring>
 #include <iostream>
@@ -49,9 +50,9 @@ TipoRet CrearOrg(Empresa &e, Cadena cargo){
 		e = new(nodo_empresa);
 		
 		// Nombre de la empresa
-		Cadena nombreEmp = new(char*[100]);
-		nombreEmp = "EDA Empresa";
-		e->nombreEmp = nombreEmp;
+		Cadena nombreEmpresa = "EDA Empresa";
+		Cadena nombreEmp = new char[strlen(nombreEmpresa) + 1];
+		strcpy(e->nombreEmp, nombreEmp);
 
 		// Plantilla general ordenada de empleados de la empresa
 		e->plantilla = CrearPlantilla();
@@ -61,10 +62,10 @@ TipoRet CrearOrg(Empresa &e, Cadena cargo){
 		Cargo primerCargo = CrearCargo(cargo);
 
 		// Se genera la lista de cargos en orden alfabetico
-		ListaCargos listaCargos = CrearListaCargo();
+		ListaCargos listaCargos = CrearListaCargos();
 		
 		// padre seria NULL
-		InsertarCargoOrdenado(listaCargos, padre, primerCargo);
+		InsertarCargoOrdenado(listaCargos, NULL, primerCargo);
 
 		// otra opcion es usar InsertarCargoOrganigrama
 		CrearOrganigrama(primerCargo);
@@ -86,14 +87,14 @@ TipoRet NuevoCargo(Empresa &e, Cadena cargoPadre, Cadena nuevoCargo){
         return ERROR;
 	}
 
-	Cargo padre = BuscarCargo(listaCargos, cargoPadre);
-	Cargo nuevo = BuscarCargo(listaCargos, nuevoCargo);
+	Cargo padre = BuscarCargo(e->listaCargos, cargoPadre);
+	Cargo nuevo = BuscarCargo(e->listaCargos, nuevoCargo);
 
 	// Si el padre existe y el nuevo cargo no existe
 	if (padre != NULL && nuevo == NULL){
 
-		nuevo = CrearCargo(Cadena nuevoCargo);
-		InsertarCargoOrdenado(&e->listaCargos, padre, nuevo);
+		nuevo = CrearCargo(nuevoCargo);
+		InsertarCargoOrdenado(e->listaCargos, padre, nuevo);
 		InsertarCargoOrganigrama(&e->organigrama, padre, nuevo);
 		
 		return OK;

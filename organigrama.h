@@ -12,12 +12,13 @@
 #include "definiciones.h"
 
 #include "cargo.h"
+#include "empresa.h"
 
 #include <cstring>
 #include <iostream>
 
 
-typedef arbol_emp* ArbolEmp;
+typedef struct arbol_emp* ArbolEmp;
 
 
 ArbolEmp CrearOrganigrama(Cargo primerCargo);
@@ -27,3 +28,5 @@ ArbolEmp CrearOrganigrama(Cargo primerCargo);
 
 void InsertarCargoOrganigrama(ArbolEmp &organigrama, Cargo cargoPadre, Cargo nuevoCargo);
 // inserta el nuevoCargo como el primer hijo de cargoPadre en el organigrama
+
+#endif

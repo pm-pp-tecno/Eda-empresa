@@ -28,6 +28,6 @@ void InsertarCargoOrdenado(ListaCargos &listaCargos, Cargo cargoPadre, Cargo nue
 void mostrarListaCargos(ListaCargos listaCargos);
 // Imprime la lista de Cargo ordenada
 
-bool isEmptyListaCargos(listaCargos);
+bool isEmptyListaCargos(ListaCargos listaCargos);
 
 #endif // CARGO_H
