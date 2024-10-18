@@ -5,32 +5,39 @@
 // empresa.c
 // Modulo de Implementacion de la Empresa
 
-#include "empresa.h"
-#include "empleado.h"
 #include "cargo.h"
+#include "empresa.h"
+
 #include <cstring>
 #include <iostream>
 
 using namespace std;
 
-
-typedef arbol_emp* ArbolEmp;
-
+/*
 struct arbol_emp{
 	Cargo cargo;
 	ArbolEmp ph;
 	ArbolEmp sh;
 };
-
+*/
 
 struct nodo_empresa{
-	// aquí deben figurar los campos que usted considere necesarios para manipular el organigrama.
-	// Se deberan crear nuevos modulos e incluirlos.
-	Cadena nombreEmp;
-	ArbolEmp organigrama;
-	Plantilla plantilla;
-	ListaCargos listaCargos;
+	Cadena nombreEmp;			// nombre de la empresa
+	ArbolEmp organigrama;       // organigrama (arbol) de la empresa
+	Plantilla plantilla;        // lista de empleados de la empresa
+	ListaCargos listaCargos;    // lista de cargos de la empresa
 };
+
+
+
+
+/**
+ * 
+ * 
+ * FUNCIONES OBLIGATORIO
+ * 
+ * 
+ */
 
 TipoRet CrearOrg(Empresa &e, Cadena cargo){
 // Inicializa la empresa y crea el primer cargo de la empresa.
@@ -47,35 +54,20 @@ TipoRet CrearOrg(Empresa &e, Cadena cargo){
 		e->nombreEmp = nombreEmp;
 
 		// Plantilla general ordenada de empleados de la empresa
-		//Plantilla plantilla = new(tipo_plantilla);
-		/*
-		Plantilla plantilla = CrearPlantilla();
-		e->plantilla = plantilla;
-		*/
 		e->plantilla = CrearPlantilla();
 
+
+		// Crea el primer cargo con una lista de empleados NULL
+		Cargo primerCargo = CrearCargo(cargo);
+
 		// Se genera la lista de cargos en orden alfabetico
-		//Cargo listaCargos = new(tipo_cargo);
-		/*
-		Cargo listaCargos = CrearCargo(cargo);
-
-		e->listaCargos = listaCargos;
-		*/
-		e->listaCargos = CrearCargo(cargo, NULL);
-
-		// Empleados en un cargo
-		//Empleado empleados = new(tipo_empleado);
-		Empleado empleados = CrearEmpleado();
-
-		ArbolEmp arbolCargos = crearOrganigrama(&empleados);
+		ListaCargos listaCargos = CrearListaCargo();
 		
-		// Creacion del arbol jerarquico
-		ArbolEmp arbolCargos = new(arbol_emp);
-		arbolCargos->cargo = cargo;
-		arbolCargos->empleados = empleados;
-		arbolCargos->ph = NULL;
-		arbolCargos->sh = NULL;
-		e->arbolCargos = arbolCargos;
+		// padre seria NULL
+		InsertarCargoOrdenado(listaCargos, padre, primerCargo);
+
+		// otra opcion es usar InsertarCargoOrganigrama
+		CrearOrganigrama(primerCargo);
 		
 		return OK;
 	}
@@ -93,40 +85,17 @@ TipoRet NuevoCargo(Empresa &e, Cadena cargoPadre, Cadena nuevoCargo){
 		cout << " - ERROR: La empresa no está creada.\n";
         return ERROR;
 	}
-	
-	//Busquedas en funciones auxiliares
-	Cargo padre = buscar_cargo(e->listaCargos, cargoPadre);
-	Cargo cargo = buscar_cargo(e->listaCargos, nuevoCargo);
-	
-	if (padre != NULL && cargo == NULL){
 
-		insertarCargoOrdenado(&e->listaCargos, cargoPadre, nuevoCargo);
-		insertarOrganigrama(&e->listaCargos, cargoPadre, nuevoCargo);
-		/*
-		Dentro de insertarOrganigrama
-		//Empleados en un cargo
-		Empleado empleados = new(tipo_empleado);
+	Cargo padre = BuscarCargo(listaCargos, cargoPadre);
+	Cargo nuevo = BuscarCargo(listaCargos, nuevoCargo);
+
+	// Si el padre existe y el nuevo cargo no existe
+	if (padre != NULL && nuevo == NULL){
+
+		nuevo = CrearCargo(Cadena nuevoCargo);
+		InsertarCargoOrdenado(&e->listaCargos, padre, nuevo);
+		InsertarCargoOrganigrama(&e->organigrama, padre, nuevo);
 		
-		//Creacion del arbol jerarquico
-		ArbolEmp arbolCargos = new(arbol_emp);
-		arbolCargos->cargo = cargo;
-		arbolCargos->empleados = empleados;
-		arbolCargos->ph = NULL;
-		arbolCargos->sh = NULL;
-		e->arbolCargos = arbolCargos;
-
-		// Actualizo tambien la lista de cargos en orden alfabetico
-
-		// e->listaCargos
-
-		typedef tipo_cargo* Cargo;
-		struct tipo_cargo{
-			Cadena cargo;
-			Cadena padre;
-			Cargo sig;
-			Cargo ant;
-		};
-		*/
 		return OK;
 	} else if (padre == NULL) {
 		cout << " - ERROR: El padre no existe.\n";
@@ -194,3 +163,4 @@ TipoRet ListarSuperCargos (Empresa e, Cadena cargo){
 // Lista todas los cargos que anteceden, en la jerarquía, al cargo de nombre cargo.
 	return NO_IMPLEMENTADA;
 }
+

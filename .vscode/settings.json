@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "empleado.h": "c",
+        "empresa.h": "c",
+        "definiciones.h": "c"
+    }
+}

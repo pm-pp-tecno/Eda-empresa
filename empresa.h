@@ -11,6 +11,8 @@
 
 #include "definiciones.h"
 
+// typedef arbol_emp* ArbolEmp;
+
 typedef struct nodo_empresa * Empresa;
 
 

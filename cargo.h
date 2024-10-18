@@ -8,18 +8,26 @@
 // cargo.h
 // Modulo de Definición del cargo
 
-typedef struct tipo_cargo* Cargo;
+#include "definiciones.h"
+#include "empleado.h"
+#include "empresa.h"
 
+typedef struct tipo_cargo* Cargo;
 typedef struct lista_cargos* ListaCargos;
 
 
-Cargo CrearCargo();
-// Inicializa el cargo.
+Cargo CrearCargo(Cadena nuevoCargo);
+// Crea un nuevo cargo a partir de una cadena
 
-Cargo buscar_cargo(Cargo listaCargos, Cadena cargo);
+Cargo BuscarCargo(Cargo listaCargos, Cadena cargo);
 // Buscar el cargo en la lista de cargos
 
-void insertarCargoOrdenado(Cargo &listaCargos, Cadena cargoPadre, Cadena nuevoCargo);
+void InsertarCargoOrdenado(ListaCargos &listaCargos, Cargo cargoPadre, Cargo nuevoCargo);
 // Inserta el nuevo cargo de forma ordenada en la listaCargos
 
-#endif
+void mostrarListaCargos(ListaCargos listaCargos);
+// Imprime la lista de Cargo ordenada
+
+bool isEmptyListaCargos(listaCargos);
+
+#endif // CARGO_H
