@@ -36,7 +36,7 @@ Cargo CrearCargo(Cadena nuevoCargo){
 	nuevo->nombreCargo = new char[strlen(nuevoCargo) + 1];
 	strcpy(nuevo->nombreCargo, nuevoCargo);
 	//nuevo->nombreCargo = nuevoCargo;
-	cout << "nuevo->nombreCargo: " << nuevo->nombreCargo << "\n";
+	cout << "Creando Cargo en CrearCargo (cargo.c). nuevo->nombreCargo: " << nuevo->nombreCargo << "\n";
 	
 
 	// Lista de empleados en el cargo
@@ -45,6 +45,22 @@ Cargo CrearCargo(Cadena nuevoCargo){
 	return nuevo;
 }
 
+
+Cargo BuscarCargo(ListaCargos listaCargos, Cadena cargo){
+// Buscar el cargo en la lista de cargos
+	//cout << "BuscarCargo (cargo.c).\n";
+	while (listaCargos != NULL){
+		//cout << "BuscarCargo (cargo.c). Distinta de NULL\n";
+		cout << "BuscarCargo (cargo.c). listaCargos->cargo->nombreCargo: " << listaCargos->cargo->nombreCargo << ".\n";
+		if (strcasecmp(listaCargos->cargo->nombreCargo, cargo) == 0){
+			cout << "BuscarCargo (cargo.c). Encontre el cargo!!.\n";
+			return listaCargos->cargo;
+		}else{
+			listaCargos = listaCargos->sig;
+		}
+	}
+	return NULL;
+}
 
 ListaCargos CrearListaCargos(Cargo primerCargo){
 // Inicializa la lista de cargos.
@@ -60,12 +76,12 @@ ListaCargos CrearListaCargos(Cargo primerCargo){
 	return nuevoLC;
 }
 
-void InsertarCargoOrdenado(ListaCargos &listaCargos, Cargo nuevoCargo, Cargo cargoPadre){
+void InsertarCargoOrdenado(ListaCargos &listaCargos, Cargo cargoPadre, Cargo nuevoCargo){
 	// Insercion en lista ordenada
 	// PRE: listaCargos no es vacia
 	// PRE: nuevoCargo NO existe y cargoPadre SI existe en la lista
 
-	cout << "Creado el primer cargo (cargo.c - InsertarCargoOrdenado).\nnuevoCargo->nombreCargo: " << nuevoCargo->nombreCargo  << ".\n";
+	cout << "Insertando el cargo (cargo.c - InsertarCargoOrdenado):\nnuevoCargo->nombreCargo: " << nuevoCargo->nombreCargo  << ".\n";
 	
 	ListaCargos nuevoLC = new(lista_cargos);
 	nuevoLC->cargo = nuevoCargo;
@@ -106,21 +122,6 @@ void InsertarCargoOrdenado(ListaCargos &listaCargos, Cargo nuevoCargo, Cargo car
 	//}
 }
 
-
-Cargo BuscarCargo(ListaCargos listaCargos, Cadena cargo){
-// Buscar el cargo en la lista de cargos
-	//cout << "BuscarCargo (cargo.c).\n";
-	while (listaCargos != NULL){
-		//cout << "BuscarCargo (cargo.c). Distinta de NULL\n";
-		cout << "BuscarCargo (cargo.c). listaCargos->cargo->nombreCargo: " << listaCargos->cargo->nombreCargo << ".\n";
-		if (strcasecmp(listaCargos->cargo->nombreCargo, cargo) == 0){
-			return listaCargos->cargo;
-		}else{
-			listaCargos = listaCargos->sig;
-		}
-	}
-	return NULL;
-}
 
 /*
 ListaCargos BuscarListaCargo(Cargo listaCargos, Cadena cargo){
