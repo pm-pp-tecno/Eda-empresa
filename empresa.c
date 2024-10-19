@@ -99,7 +99,11 @@ TipoRet NuevoCargo(Empresa &e, Cadena cargoPadre, Cadena nuevoCargo){
 
 		nuevo = CrearCargo(nuevoCargo);
 		InsertarCargoOrdenado(e->listaCargos, padre, nuevo);
+		cout << "Cargo insertado ordenadamente en la lista.\n";
 		InsertarCargoOrganigrama(e->organigrama, padre, nuevo);
+		cout << "Cargo insertado en el organigrama bajo el padre: ";
+		MostrarCargo(padre);
+		cout << ".\n";
 		
 		return OK;
 	} else if (padre == NULL) {

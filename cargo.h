@@ -22,7 +22,10 @@ Cargo CrearCargo(Cadena nuevoCargo);
 Cargo BuscarCargo(ListaCargos listaCargos, Cadena cargo);
 // Buscar el cargo en la lista de cargos
 
-void InsertarCargoOrdenado(ListaCargos &listaCargos, Cargo nuevoCargo, Cargo cargoPadre);
+void MostrarCargo(Cargo cargo);
+// Muestra el nombreCargo del cargo parametro
+
+void InsertarCargoOrdenado(ListaCargos &listaCargos, Cargo cargoPadre, Cargo nuevoCargo);
 // Inserta el nuevo cargo de forma ordenada en la listaCargos
 
 void mostrarListaCargos(ListaCargos listaCargos);
@@ -30,6 +33,6 @@ void mostrarListaCargos(ListaCargos listaCargos);
 
 bool isEmptyListaCargos(ListaCargos listaCargos);
 
-ListaCargos CrearListaCargos();
+ListaCargos CrearListaCargos(Cargo primerCargo);
 
 #endif // CARGO_H

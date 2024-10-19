@@ -62,6 +62,14 @@ Cargo BuscarCargo(ListaCargos listaCargos, Cadena cargo){
 	return NULL;
 }
 
+
+void MostrarCargo(Cargo cargo){
+// Muestra el nombreCargo del cargo parametro
+	if (cargo != NULL) 
+		cout << cargo->nombreCargo;
+		
+}
+
 ListaCargos CrearListaCargos(Cargo primerCargo){
 // Inicializa la lista de cargos.
 
