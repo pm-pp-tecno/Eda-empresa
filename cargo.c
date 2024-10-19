@@ -34,6 +34,7 @@ bool isEmptyListaCargos(ListaCargos listaCargos){
 Cargo CrearCargo(Cadena nuevoCargo){
 	Cargo nuevo = new(tipo_cargo);
 	nuevo->nombreCargo = new char[strlen(nuevoCargo) + 1];
+	cout << "nuevo->nombreCargo: " << nuevo->nombreCargo << "\n";
 	strcpy(nuevo->nombreCargo, nuevoCargo);
 
 	// Lista de empleados en el cargo
@@ -57,6 +58,7 @@ void InsertarCargoOrdenado(ListaCargos &listaCargos, Cargo nuevoCargo, Cargo car
 	nuevoLC->padre = cargoPadre;
 
 	if (isEmptyListaCargos(listaCargos)){
+		cout << " Lista de cargos vacia (cargo.c).\n";
 		nuevoLC->sig = NULL;
 		nuevoLC->ant = NULL;
 	} else {
