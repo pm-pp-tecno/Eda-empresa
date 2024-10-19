@@ -52,18 +52,22 @@ TipoRet CrearOrg(Empresa &e, Cadena cargo){
 		strcpy(nombreEmp, "EDA Empresa");
 		e->nombreEmp = nombreEmp;
 
+		cout << "Nombre de la empresa guardado (empresa.c).\ne->nombreEmp: " << e->nombreEmp << ".\n";
+
 		// Plantilla general ordenada de empleados de la empresa
 		e->plantilla = CrearPlantilla();
 
 
 		// Crea el primer cargo con una lista de empleados NULL
 		Cargo primerCargo = CrearCargo(cargo);
+		//cout << "Creado el primer cargo (empresa.c).\nprimerCargo->nombreCargo: " << primerCargo->nombreCargo << ".\n";
 
 		// Se genera la lista de cargos en orden alfabetico
-		ListaCargos listaCargos = CrearListaCargos();
+		ListaCargos listaCargos = CrearListaCargos(primerCargo);
+		//cout << "Creada listaCargos con primerCargo (empresa.c).\nlistaCargos->cargo->nombreCargo: " << listaCargos->cargo->nombreCargo << ".\n";
 		
 		// padre seria NULL
-		InsertarCargoOrdenado(listaCargos, primerCargo, NULL);
+		//InsertarCargoOrdenado(listaCargos, primerCargo, NULL);
 		e->listaCargos = listaCargos;
 
 		// otra opcion es usar InsertarCargoOrganigrama
