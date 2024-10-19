@@ -43,10 +43,8 @@ struct nodo_empresa{
 TipoRet CrearOrg(Empresa &e, Cadena cargo){
 // Inicializa la empresa y crea el primer cargo de la empresa.
 // Originalmente la misma debería  estar vacía, en otro caso la operación quedará sin efecto.
-	if (e != NULL){
-		cout << " - ERROR: para ejecutar el comando el organigrama NO debe estar creado.\n";
-		return ERROR;
-	} else {
+// PRE: Empresa e NO esta creado
+
 		e = new(nodo_empresa);
 		
 		// Nombre de la empresa
@@ -71,7 +69,7 @@ TipoRet CrearOrg(Empresa &e, Cadena cargo){
 		CrearOrganigrama(primerCargo);
 		
 		return OK;
-	}
+	
 }
 
 TipoRet EliminarOrg(Empresa &e){
