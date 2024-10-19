@@ -8,6 +8,8 @@
 // empleado.h
 // Modulo de Definición del empleado
 
+#include "definiciones.h"
+#include "cargo.h"
 
 typedef struct tipo_persona* Persona;
 typedef struct tipo_empleado* Empleado;

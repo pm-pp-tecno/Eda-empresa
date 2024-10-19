@@ -6,8 +6,7 @@
 // organigrama.c
 // Modulo de Implementacion del organigrama
 
-#include "cargo.h"
-
+#include "organigrama.h"
 #include <cstring>
 #include <iostream>
 

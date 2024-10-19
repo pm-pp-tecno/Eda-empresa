@@ -20,13 +20,13 @@ struct tipo_cargo{
 struct lista_cargos{
 	Cargo cargo;
 	Cargo padre;
-	ListaCargo sig;
-	ListaCargo ant;
+	ListaCargos sig;
+	ListaCargos ant;
 };
 
 
 
-bool isEmptyListaCargos(listaCargos){
+bool isEmptyListaCargos(ListaCargos listaCargos){
 	return listaCargos == NULL;
 }
 
@@ -48,9 +48,6 @@ ListaCargos CrearListaCargos(){
 	return NULL;
 }
 
-
-
-
 void InsertarCargoOrdenado(ListaCargos &listaCargos, Cargo nuevoCargo, Cargo cargoPadre){
 	// Insercion en lista ordenada
 	// PRE: nuevoCargo NO existe y cargoPadre SI existe en la lista
@@ -64,7 +61,7 @@ void InsertarCargoOrdenado(ListaCargos &listaCargos, Cargo nuevoCargo, Cargo car
 		nuevoLC->ant = NULL;
 	} else {
 
-		if (strcasecmp(listaCargos->cargo->nombreCargo, nuevoCargo) > 0) {
+		if (strcasecmp(listaCargos->cargo->nombreCargo, nuevoCargo->nombreCargo) > 0) {
 			// si es mayor que 0 significa el nuevo cargo va primero
 			nuevoLC->sig = listaCargos;
 			listaCargos->ant = nuevoLC;
@@ -74,7 +71,7 @@ void InsertarCargoOrdenado(ListaCargos &listaCargos, Cargo nuevoCargo, Cargo car
 			ListaCargos actual = listaCargos;
 			// en este caso avanzamos hasta encontrar el ultimo cargo o encontrar uno que sea mayor
 			// de forma alfabetica al nuevoCargo
-			while (actual->sig != NULL && strcasecmp(actual->sig->cargo->nombreCargo, nuevoCargo) < 0) {
+			while (actual->sig != NULL && strcasecmp(actual->sig->cargo->nombreCargo, nuevoCargo->nombreCargo) < 0) {
 				// lo que quiere decir < 0 es que el nombreCargo empieza con una letra
 				// que se ubica antes que la primera letra de nuevoCargo en el alfabeto
 				// por eso lo recorre hasta encontrar uno que lo supere, entonces va delante de ese
@@ -86,18 +83,8 @@ void InsertarCargoOrdenado(ListaCargos &listaCargos, Cargo nuevoCargo, Cargo car
 			}
 			actual->sig = nuevoLC;
 			nuevoLC->ant = actual;
-			
-			return OK;
-		} else if (padre == NULL) {
-			cout << " - ERROR: El padre no existe.\n";
-			return ERROR;
-		} else  {
-			cout << " - ERROR: Ese cargo ya existe.\n";
-			return ERROR;
-		}
-	
+		} 
 	}
-	
 }
 
 /*
@@ -117,7 +104,7 @@ ListaCargos BuscarListaCargo(Cargo listaCargos, Cadena cargo){
 Cargo BuscarCargo(ListaCargos listaCargos, Cadena cargo){
 // Buscar el cargo en la lista de cargos
 	while (listaCargos != NULL){
-		if (strcasecmp(listaCargos->cargo, cargo) == 0){
+		if (strcasecmp(listaCargos->cargo->nombreCargo, cargo) == 0){
 			return listaCargos->cargo;
 		}else{
 			listaCargos = listaCargos->sig;

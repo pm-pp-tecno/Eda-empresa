@@ -19,15 +19,17 @@ typedef struct lista_cargos* ListaCargos;
 Cargo CrearCargo(Cadena nuevoCargo);
 // Crea un nuevo cargo a partir de una cadena
 
-Cargo BuscarCargo(Cargo listaCargos, Cadena cargo);
+Cargo BuscarCargo(ListaCargos listaCargos, Cadena cargo);
 // Buscar el cargo en la lista de cargos
 
-void InsertarCargoOrdenado(ListaCargos &listaCargos, Cargo cargoPadre, Cargo nuevoCargo);
+void InsertarCargoOrdenado(ListaCargos &listaCargos, Cargo nuevoCargo, Cargo cargoPadre);
 // Inserta el nuevo cargo de forma ordenada en la listaCargos
 
 void mostrarListaCargos(ListaCargos listaCargos);
 // Imprime la lista de Cargo ordenada
 
 bool isEmptyListaCargos(ListaCargos listaCargos);
+
+ListaCargos CrearListaCargos();
 
 #endif // CARGO_H

@@ -50,9 +50,9 @@ TipoRet CrearOrg(Empresa &e, Cadena cargo){
 		e = new(nodo_empresa);
 		
 		// Nombre de la empresa
-		Cadena nombreEmpresa = "EDA Empresa";
-		Cadena nombreEmp = new char[strlen(nombreEmpresa) + 1];
-		strcpy(e->nombreEmp, nombreEmp);
+		Cadena nombreEmp = new char[100];
+		strcpy(nombreEmp, "EDA Empresa");
+		e->nombreEmp = nombreEmp;
 
 		// Plantilla general ordenada de empleados de la empresa
 		e->plantilla = CrearPlantilla();
@@ -65,7 +65,7 @@ TipoRet CrearOrg(Empresa &e, Cadena cargo){
 		ListaCargos listaCargos = CrearListaCargos();
 		
 		// padre seria NULL
-		InsertarCargoOrdenado(listaCargos, NULL, primerCargo);
+		InsertarCargoOrdenado(listaCargos, primerCargo, NULL);
 
 		// otra opcion es usar InsertarCargoOrganigrama
 		CrearOrganigrama(primerCargo);
@@ -95,7 +95,7 @@ TipoRet NuevoCargo(Empresa &e, Cadena cargoPadre, Cadena nuevoCargo){
 
 		nuevo = CrearCargo(nuevoCargo);
 		InsertarCargoOrdenado(e->listaCargos, padre, nuevo);
-		InsertarCargoOrganigrama(&e->organigrama, padre, nuevo);
+		InsertarCargoOrganigrama(e->organigrama, padre, nuevo);
 		
 		return OK;
 	} else if (padre == NULL) {
