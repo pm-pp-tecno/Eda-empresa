@@ -67,7 +67,7 @@ TipoRet CrearOrg(Empresa &e, Cadena cargo){
 		e->listaCargos = listaCargos;
 
 		// otra opcion es usar InsertarCargoOrganigrama
-		organigrama = CrearOrganigrama(primerCargo);
+		ArbolEmp organigrama = CrearOrganigrama(primerCargo);
 		e->organigrama = organigrama;
 		
 		return OK;
