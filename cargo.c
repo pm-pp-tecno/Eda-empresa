@@ -33,10 +33,11 @@ bool isEmptyListaCargos(ListaCargos listaCargos){
 // Crea el cargo a partir de la cadena nuevoCargo
 Cargo CrearCargo(Cadena nuevoCargo){
 	Cargo nuevo = new(tipo_cargo);
-	//nuevo->nombreCargo = new char[strlen(nuevoCargo) + 1];
-	nuevo->nombreCargo = nuevoCargo;
+	nuevo->nombreCargo = new char[strlen(nuevoCargo) + 1];
+	strcpy(nuevo->nombreCargo, nuevoCargo);
+	//nuevo->nombreCargo = nuevoCargo;
 	cout << "nuevo->nombreCargo: " << nuevo->nombreCargo << "\n";
-	//strcpy(nuevo->nombreCargo, nuevoCargo);
+	
 
 	// Lista de empleados en el cargo
 	ListaEmp empleados = CrearListaEmpleados();
