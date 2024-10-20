@@ -58,6 +58,7 @@ TipoRet CrearOrg(Empresa &e, Cadena cargo){
 		e->plantilla = CrearPlantilla();
 
 
+
 		// Crea el primer cargo con una lista de empleados NULL
 		Cargo primerCargo = CrearCargo(cargo);
 		//cout << "Creado el primer cargo (empresa.c).\nprimerCargo->nombreCargo: " << primerCargo->nombreCargo << ".\n";
@@ -164,7 +165,11 @@ TipoRet ReasignarPersona(Empresa &e, Cadena cargo, Cadena ci){
 TipoRet ListarPersonas(Empresa e, Cadena cargo){
 // Dado un cargo listar las personas asignadas al mismo ordenadas por fecha de alta a la empresa. 
 // Lista todas las personas asignadas al cargo de nombre cargo. 
-	return NO_IMPLEMENTADA;
+
+	Cargo aBuscar = BuscarCargo(e->listaCargos, cargo);
+	Imprimir(cargo->empleados);
+
+	return OK;
 }
 
 TipoRet ListarSuperCargos (Empresa e, Cadena cargo){
@@ -172,4 +177,3 @@ TipoRet ListarSuperCargos (Empresa e, Cadena cargo){
 // Lista todas los cargos que anteceden, en la jerarquía, al cargo de nombre cargo.
 	return NO_IMPLEMENTADA;
 }
-

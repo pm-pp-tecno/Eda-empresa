@@ -24,7 +24,7 @@ ArbolEmp CrearOrganigrama(Cargo primerCargo);
 // crea el organigrama con el primer cargo
 
 
-void InsertarCargoOrganigrama(ArbolEmp &organigrama, Cargo cargoPadre, Cargo nuevoCargo);
+void InsertarCargoOrganigrama(ArbolEmp organigrama, Cargo cargoPadre, Cargo nuevoCargo);
 // inserta el nuevoCargo como el primer hijo de cargoPadre en el organigrama
 
 #endif

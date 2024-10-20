@@ -54,3 +54,11 @@ ListaEmp CrearListaEmpleados(){
 // Inicializa el empleado.
 	return NULL;
 }
+
+
+void Imprimir(ListaEmp empleados){
+	if (empleados != NULL){
+		cout<< empleados->ult->empleado->persona->ci << "-" <<  empleados->ult->empleado->persona->nom << "-" << empleados->ult->empleado->alta << "\n";
+	}
+	Imprimir (empleados->ant);
+}

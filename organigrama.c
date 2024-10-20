@@ -35,9 +35,22 @@ ArbolEmp CrearOrganigrama(Cargo primerCargo){
 }
 
 
-
-void InsertarCargoOrganigrama(ArbolEmp &organigrama, Cargo cargoPadre, Cargo nuevoCargo){
+void InsertarCargoOrganigrama(ArbolEmp organigrama, Cargo cargoPadre, Cargo nuevoCargo){
 // inserta el nuevoCargo como el primer hijo de cargoPadre
+    if (organigrama != NULL){ 
+        if (strcasecmp (organigrama->cargo->nombreCargo, cargoPadre->nombreCargo) == 0){ 
+            ArbolEmp nuevo = new(arbol_emp);
+            nuevo->cargo = nuevoCargo;
+            nuevo->ph = NULL;
+            nuevo->sh = organigrama->ph;
+            organigrama->ph = nuevo;
+        }
+        else{
+            InsertarCargoOrganigrama(organigrama->ph, cargoPadre, nuevoCargo);
+            InsertarCargoOrganigrama(organigrama->sh, cargoPadre, nuevoCargo);
+        }
+    }
+}
 
 
     /*
