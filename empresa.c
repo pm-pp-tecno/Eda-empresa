@@ -6,8 +6,9 @@
 // Modulo de Implementacion de la Empresa
 
 #include "cargo.h"
-#include "empresa.h"
+#include "empleado.h"
 #include "organigrama.h"
+#include "empresa.h"
 
 #include <cstring>
 #include <iostream>
@@ -55,7 +56,7 @@ TipoRet CrearOrg(Empresa &e, Cadena cargo){
 		cout << "Nombre de la empresa guardado (empresa.c).\ne->nombreEmp: " << e->nombreEmp << ".\n";
 
 		// Plantilla general ordenada de empleados de la empresa
-		e->plantilla = CrearPlantilla();
+		e->plantilla = NULL;
 
 
 
@@ -144,7 +145,44 @@ TipoRet AsignarPersona(Empresa &e, Cadena cargo, Cadena nom, Cadena ci){
 // Asigna una persona de nombre nom  y cédula de identidad ci al cargo cargo
 // siempre que el cargo exista en la empresa y esa persona no este asignada a
 // ese u otro cargo, en caso contrario la operación quedará sin efecto.
-	return NO_IMPLEMENTADA;
+	cout << "Entrando a AsignarPersona\n";
+	if (e == NULL){
+		cout << "La empresa no esta creada\n";
+		return ERROR;
+	}
+
+	Cargo cargoEncontrado = BuscarCargo(e->listaCargos, cargo);
+	if (cargoEncontrado == NULL ){
+		cout << "El cargo no esta creado\n";
+		return ERROR;
+	}
+
+	Plantilla plantilla = e->plantilla;
+	while (plantilla != NULL) {
+		if (strcmp(plantilla->empleado->persona->ci, ci) == 0) {
+			cout << "El empleado ya tiene un cargo\n";
+			return ERROR;
+		} else {
+			plantilla = plantilla->sig;
+		}
+	}
+
+	Persona nuevaPersona = CrearPersona(nom, ci);
+	cout << "Persona Creada\n";
+	Empleado nuevoEmpleado = CrearEmpleado(nuevaPersona, cargoEncontrado);
+	cout << "Empleado Creado\n";
+	InsertarListaEmpleados(cargoEncontrado->empleados, nuevoEmpleado);
+	
+	if (e->plantilla == NULL){
+		e->plantilla = CrearPlantilla(nuevoEmpleado);
+		cout << "Empleado agregado como primer empleado en la plantilla\n";
+	} else {
+		AsignarEmpleadoPlantilla(e->plantilla, nuevoEmpleado);
+		cout << "Empleado agregado a la plantilla\n";
+	}
+	
+	cout << "Empleado" << nuevaPersona->nom << " asignado al cargo: " << cargo << "\n";
+	return OK;
 }
 
 TipoRet EliminarPersona(Empresa &e, Cadena ci){

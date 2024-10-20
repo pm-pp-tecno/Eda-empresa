@@ -9,11 +9,25 @@
 // Modulo de Definición del cargo
 
 #include "definiciones.h"
-#include "empleado.h"
-#include "empresa.h"
+//#include "empleado.h"
+//#include "empresa.h"
+
+typedef struct lista_empleados* ListaEmp;
 
 typedef struct tipo_cargo* Cargo;
 typedef struct lista_cargos* ListaCargos;
+
+struct tipo_cargo{
+	Cadena nombreCargo;
+	ListaEmp empleados;
+};
+
+struct lista_cargos{
+	Cargo cargo;
+	Cargo padre;
+	ListaCargos sig;
+	ListaCargos ant;
+};
 
 
 Cargo CrearCargo(Cadena nuevoCargo);

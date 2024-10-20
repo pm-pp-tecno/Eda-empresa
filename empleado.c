@@ -5,14 +5,15 @@
 // empleado.c
 // Modulo de Implementacion del Empleado
 
-#include "empleado.h"
 #include "cargo.h"
+#include "empleado.h"
+
 #include <cstring>
 #include <iostream>
 
 using namespace std;
 
-struct tipo_persona{
+/* struct tipo_persona{
 	Cadena ci;
 	Cadena nom;
 };
@@ -37,23 +38,65 @@ struct tipo_plantilla{
 	Empleado empleado;
 	Plantilla sig;
 	Plantilla ant;
-};
+}; */
 
-
-
-Empleado CrearEmpleado(){
-// Inicializa el empleado.
-	return NULL;
+Persona CrearPersona(Cadena nom, Cadena ci){
+	Persona nuevaPersona = new(tipo_persona);
+	nuevaPersona->nom = new char[strlen(nom) + 1];
+	strcpy(nuevaPersona->nom, nom);
+	nuevaPersona->ci = new char[strlen(ci) + 1];
+	strcpy(nuevaPersona->ci, ci);
+	return nuevaPersona;
 }
 
-Plantilla CrearPlantilla(){
-// Inicializa la plantilla.
-	return NULL;
+Empleado CrearEmpleado(Persona persona, Cargo cargo){
+	Empleado nuevoEmpleado = new(tipo_empleado);
+	nuevoEmpleado->persona = persona;
+	nuevoEmpleado->cargo = cargo;
+	nuevoEmpleado->alta = new char[10];
+	strcpy(nuevoEmpleado->alta, "10/04/2024");
+	return nuevoEmpleado;
+}
+
+Plantilla CrearPlantilla(Empleado empleado){
+    Plantilla nuevaPlantilla = new(tipo_plantilla);
+	nuevaPlantilla->empleado = empleado;
+    nuevaPlantilla->sig = NULL;
+    nuevaPlantilla->ant = NULL;
+    return nuevaPlantilla;
+}
+
+void AsignarEmpleadoPlantilla(Plantilla &plantilla, Empleado empleado){
+    Plantilla recorre = plantilla;
+    while (recorre->sig != NULL){
+        recorre = recorre->sig;
+    }
+    Plantilla nuevoEmpleado = new(tipo_plantilla);
+    nuevoEmpleado->sig = NULL;
+    nuevoEmpleado->ant = recorre;
+    recorre->sig = nuevoEmpleado;
 }
 
 ListaEmp CrearListaEmpleados(){
-// Inicializa el empleado.
-	return NULL;
+    return NULL;
+}
+
+void InsertarListaEmpleados(ListaEmp &empleados, Empleado empleado){
+    if (empleados == NULL){
+        ListaEmp nuevaListaEmpleados = new(lista_empleados);
+        nuevaListaEmpleados->empleado = empleado;
+        nuevaListaEmpleados->sig = NULL;
+        nuevaListaEmpleados->ant = NULL;
+        nuevaListaEmpleados->ult = nuevaListaEmpleados;
+    }else{
+        ListaEmp ultimo = empleados->ult;
+        ListaEmp nuevo = new(lista_empleados);
+        nuevo->empleado = empleado;
+        nuevo->sig = NULL;
+        nuevo->ant = ultimo;
+        ultimo->sig = nuevo;
+        empleados->ult = nuevo;
+    }
 }
 
 

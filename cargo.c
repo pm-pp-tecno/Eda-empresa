@@ -6,13 +6,14 @@
 // Modulo de Implementacion del Empleado
 
 #include "cargo.h"
+#include "empleado.h"
 #include <cstring>
 #include <iostream>
 
 using namespace std;
 
 
-struct tipo_cargo{
+/* struct tipo_cargo{
 	Cadena nombreCargo;
 	ListaEmp empleados;
 };
@@ -22,7 +23,7 @@ struct lista_cargos{
 	Cargo padre;
 	ListaCargos sig;
 	ListaCargos ant;
-};
+}; */
 
 
 
