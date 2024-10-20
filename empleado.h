@@ -62,9 +62,7 @@ void InsertarListaEmpleados(ListaEmp &empleados, Empleado empleado);
 void MostrarEmpleado(Empleado empleado, Cadena Formato);
 // Imprime los datos del empleado con el formato Formato
 
-
-void MostrarEmpleado(Empleado empleado, Cadena Formato);
-// Imprime los datos del empleado con el formato Formato
+bool BuscarEmpleadoPlantilla(Plantilla plantilla, Cadena ci);
 
 
 Empleado Head(ListaEmp empleados);

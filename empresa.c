@@ -157,6 +157,16 @@ TipoRet AsignarPersona(Empresa &e, Cadena cargo, Cadena nom, Cadena ci){
 		return ERROR;
 	}
 
+
+	bool encontreEmpleado = BuscarEmpleadoPlantilla(e->plantilla, ci);
+	if (encontreEmpleado) {
+		cout << "El empleado ya tiene un cargo\n";
+		return ERROR;
+	}
+
+	cout << "Empleado no encontrado en la Plantilla\n";
+
+/*
 	Plantilla plantilla = e->plantilla;
 	while (plantilla != NULL) {
 		if (strcmp(plantilla->empleado->persona->ci, ci) == 0) {
@@ -166,6 +176,8 @@ TipoRet AsignarPersona(Empresa &e, Cadena cargo, Cadena nom, Cadena ci){
 			plantilla = plantilla->sig;
 		}
 	}
+*/
+
 
 	Persona nuevaPersona = CrearPersona(nom, ci);
 	cout << "Persona Creada\n";

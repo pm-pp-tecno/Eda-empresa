@@ -59,10 +59,10 @@ Empleado CrearEmpleado(Persona persona, Cargo cargo){
 }
 
 Plantilla CrearPlantilla(Empleado empleado){
-    Plantilla nuevaPlantilla = new(tipo_plantilla);
+	Plantilla nuevaPlantilla = new(tipo_plantilla);
 	nuevaPlantilla->empleado = empleado;
-    nuevaPlantilla->sig = NULL;
-    nuevaPlantilla->ant = NULL;
+	nuevaPlantilla->sig = NULL;
+	nuevaPlantilla->ant = NULL;
     return nuevaPlantilla;
 }
 
@@ -121,6 +121,22 @@ void MostrarEmpleado(Empleado empleado, Cadena formato){
 		cout << empleado->alta << "\n";
 
 	}
+}
+
+
+bool BuscarEmpleadoPlantilla(Plantilla plantilla, Cadena ci){
+	bool encontre = false;
+	while (plantilla != NULL && !encontre) {
+		Cadena formato = new char[20];
+		strcpy(formato, "En linea");
+		MostrarEmpleado(plantilla->empleado, formato);
+		if (strcmp(plantilla->empleado->persona->ci, ci) == 0) {
+			encontre = true;
+		} else {
+			plantilla = plantilla->sig;
+		}
+	}
+	return encontre;
 }
 
 
