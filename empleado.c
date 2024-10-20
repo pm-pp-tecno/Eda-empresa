@@ -56,9 +56,9 @@ ListaEmp CrearListaEmpleados(){
 }
 
 
-void Imprimir(ListaEmp empleados){
+void ImprimirListaEmp(ListaEmp empleados){
 	if (empleados != NULL){
 		cout<< empleados->ult->empleado->persona->ci << "-" <<  empleados->ult->empleado->persona->nom << "-" << empleados->ult->empleado->alta << "\n";
 	}
-	Imprimir (empleados->ant);
+	ImprimirListaEmp (empleados->ant);
 }
