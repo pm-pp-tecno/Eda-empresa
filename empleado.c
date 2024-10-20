@@ -6,6 +6,7 @@
 // Modulo de Implementacion del Empleado
 
 #include "empleado.h"
+#include "cargo.h"
 #include <cstring>
 #include <iostream>
 
@@ -27,7 +28,7 @@ struct lista_empleados{
 	Empleado empleado;
 	ListaEmp sig;
 	ListaEmp ant;
-	ListaEmp ult;
+	ListaEmp ult; // ultimo elemento de la lista. Solo se actualiza el 1er elemento
 };
 
 // Plantilla general de empleados en la empresa
@@ -56,9 +57,62 @@ ListaEmp CrearListaEmpleados(){
 }
 
 
+void MostrarEmpleado(Empleado empleado, Cadena formato){
+// Imprime los datos del empleado con el formato Formato
+	if (empleado != NULL) {
+		/*
+		switch (formato):
+			case "En linea":
+				cout << empleado->persona->ci << "-";
+				cout << empleado->persona->nom << "-";
+				cout << empleado->persona->alta << "\n";
+			break;
+			case "Otro formato":
+				cout << empleado->persona->ci << "-";
+				cout << empleado->persona->nom << "-";
+				cout << empleado->persona->alta << "\n";
+			break;
+		*/
+		cout << empleado->persona->ci << "-";
+		cout << empleado->persona->nom << "-";
+		cout << empleado->alta << "\n";
+
+	}
+}
+
+
+Empleado Head(ListaEmp empleados){
+// Retorna el primer elemento de la lista.
+// Pre: l no vacia.
+	return empleados->empleado;
+}
+
+ListaEmp Tail(ListaEmp empleados){
+// Retorna el "resto" de la lista.
+// Pre: l no vacia.
+	return empleados->sig;
+}
+
+
+ListaEmp ListaAnt(ListaEmp empleados){
+// Retorna el "resto" de la lista.
+// Pre: l no vacia.
+	return empleados->ant;
+}
+
+
+ListaEmp Ultimo(ListaEmp empleados){
+// Retorna el "resto" de la lista.
+// Pre: l no vacia.
+	return empleados->ult;
+}
+
+/*
 void ImprimirListaEmp(ListaEmp empleados){
 	if (empleados != NULL){
 		cout<< empleados->ult->empleado->persona->ci << "-" <<  empleados->ult->empleado->persona->nom << "-" << empleados->ult->empleado->alta << "\n";
 	}
 	ImprimirListaEmp (empleados->ant);
 }
+*/
+

@@ -28,11 +28,20 @@ void MostrarCargo(Cargo cargo);
 void InsertarCargoOrdenado(ListaCargos &listaCargos, Cargo cargoPadre, Cargo nuevoCargo);
 // Inserta el nuevo cargo de forma ordenada en la listaCargos
 
+
+void ImprimirCargoListaEmp(Cargo cargo);
+// Imprime la lista de empleados de una cargo
+// PRE: cargo tiene una lista de empleados creada
+
+/*
 void mostrarListaCargos(ListaCargos listaCargos);
 // Imprime la lista de Cargo ordenada
+*/
 
 bool isEmptyListaCargos(ListaCargos listaCargos);
 
 ListaCargos CrearListaCargos(Cargo primerCargo);
+
+Cadena ObtenerCargo(Cargo cargo);
 
 #endif // CARGO_H

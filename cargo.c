@@ -67,8 +67,16 @@ void MostrarCargo(Cargo cargo){
 // Muestra el nombreCargo del cargo parametro
 	if (cargo != NULL) 
 		cout << cargo->nombreCargo;
-		
 }
+
+
+Cadena ObtenerCargo(Cargo cargo){
+// Muestra el nombreCargo del cargo parametro
+	if (cargo != NULL) 
+		return cargo->nombreCargo;
+	else return NULL;
+}
+
 
 ListaCargos CrearListaCargos(Cargo primerCargo){
 // Inicializa la lista de cargos.
@@ -129,6 +137,33 @@ void InsertarCargoOrdenado(ListaCargos &listaCargos, Cargo cargoPadre, Cargo nue
 	} 
 	//}
 }
+
+
+void ImprimirCargoListaEmp(Cargo cargo){
+// Imprime la lista de empleados de una cargo
+// PRE: cargo tiene una lista de empleados creada
+	ListaEmp listaEmp = cargo->empleados;
+	if (listaEmp != NULL){
+		
+		Cadena formato = new char[20];
+		strcpy(formato, "En linea");
+
+		// Si solo hay 1 elemento
+		if (Head(listaEmp) == Head(Tail(listaEmp))){			
+			MostrarEmpleado(Head(listaEmp), formato);
+		} else { // Hay mas de 1 elemento
+			ListaEmp iter = Ultimo(listaEmp);
+
+			while (iter != NULL){
+				MostrarEmpleado(Head(listaEmp), formato);
+				iter = ListaAnt(listaEmp);
+			}
+		}
+	} else 
+		cout << "Lista de empleados vacia.\n";
+}
+
+
 
 
 /*

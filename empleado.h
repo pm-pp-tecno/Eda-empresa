@@ -26,4 +26,21 @@ Plantilla CrearPlantilla();
 ListaEmp CrearListaEmpleados();
 // Inicializa lista de empleados en un cargo.
 
+void MostrarEmpleado(Empleado empleado, Cadena Formato);
+// Imprime los datos del empleado con el formato Formato
+
+
+void MostrarEmpleado(Empleado empleado, Cadena Formato);
+// Imprime los datos del empleado con el formato Formato
+
+
+Empleado Head(ListaEmp empleados);
+
+ListaEmp Tail(ListaEmp empleados);
+
+ListaEmp ListaAnt(ListaEmp empleados);
+
+ListaEmp Ultimo(ListaEmp empleados);
+
+
 #endif

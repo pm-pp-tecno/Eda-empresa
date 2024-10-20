@@ -167,7 +167,7 @@ TipoRet ListarPersonas(Empresa e, Cadena cargo){
 // Lista todas las personas asignadas al cargo de nombre cargo. 
 
 	Cargo aBuscar = BuscarCargo(e->listaCargos, cargo);
-	ImprimirListaEmp(cargo->empleados);
+	ImprimirCargoListaEmp(aBuscar);
 
 	return OK;
 }

@@ -1,5 +1,5 @@
 all: main.o empresa.o cargo.o empleado.o organigrama.o
-	g++ -o programa main.o empresa.o cargo.o empleado.o organigrama.o
+	g++ -o programa.bin main.o empresa.o cargo.o empleado.o organigrama.o
 main.o: main.c empresa.h cargo.h empleado.h organigrama.h
 	g++ -c main.c
 empresa.o: empresa.c empresa.h cargo.h empleado.h

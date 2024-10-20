@@ -37,8 +37,10 @@ ArbolEmp CrearOrganigrama(Cargo primerCargo){
 
 void InsertarCargoOrganigrama(ArbolEmp organigrama, Cargo cargoPadre, Cargo nuevoCargo){
 // inserta el nuevoCargo como el primer hijo de cargoPadre
-    if (organigrama != NULL){ 
-        if (strcasecmp (organigrama->cargo->nombreCargo, cargoPadre->nombreCargo) == 0){ 
+    if (organigrama != NULL){
+        Cadena nombreCargo = ObtenerCargo(nuevoCargo);
+        Cadena nombrePadre = ObtenerCargo(cargoPadre);
+        if (strcasecmp (nombreCargo, nombrePadre) == 0){ 
             ArbolEmp nuevo = new(arbol_emp);
             nuevo->cargo = nuevoCargo;
             nuevo->ph = NULL;
@@ -52,43 +54,3 @@ void InsertarCargoOrganigrama(ArbolEmp organigrama, Cargo cargoPadre, Cargo nuev
     }
 }
 
-
-    /*
-
-    //Creacion del arbol jerarquico
-    ArbolEmp arbolCargos = new(arbol_emp);
-    arbolCargos->cargo = cargo;
-    arbolCargos->empleados = empleados;
-    arbolCargos->ph = NULL;
-    arbolCargos->sh = NULL;
-    e->arbolCargos = arbolCargos;
-
-    // Actualizo tambien la lista de cargos en orden alfabetico
-
-    // e->listaCargos
-
-
-
-
-    Empleado empleados = CrearEmpleado();
-
-    ArbolEmp organigrama = crearOrganigrama(primerCargo);
-    CrearArbolEmp(Cadena nuevoCargo)
-    
-    // Creacion del arbol jerarquico
-    ArbolEmp arbolCargos = new(arbol_emp);
-    arbolCargos->cargo = cargo;
-    arbolCargos->empleados = empleados;
-    arbolCargos->ph = NULL;
-    arbolCargos->sh = NULL;
-    e->arbolCargos = arbolCargos;
-
-
-
-
-
-
-
-    */
-
-}
