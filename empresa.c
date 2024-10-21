@@ -130,7 +130,9 @@ TipoRet EliminarCargo(Empresa &e, Cadena cargo){
 TipoRet ListarCargosAlf(Empresa e){
 // Listar todos los cargos ordenados alfabéticamente.
 // Lista todos los cargos de la empresa ordenados alfabéticamente por nombre del cargo. 
-	return NO_IMPLEMENTADA;
+	MostrarListaCargos(e->listaCargos);
+	cout << "\n";
+	return OK;
 }
 
 TipoRet ListarJerarquia(Empresa e){
@@ -145,7 +147,6 @@ TipoRet AsignarPersona(Empresa &e, Cadena cargo, Cadena nom, Cadena ci){
 // Asigna una persona de nombre nom  y cédula de identidad ci al cargo cargo
 // siempre que el cargo exista en la empresa y esa persona no este asignada a
 // ese u otro cargo, en caso contrario la operación quedará sin efecto.
-	cout << "Entrando a AsignarPersona\n";
 	if (e == NULL){
 		cout << "La empresa no esta creada\n";
 		return ERROR;
@@ -193,7 +194,7 @@ TipoRet AsignarPersona(Empresa &e, Cadena cargo, Cadena nom, Cadena ci){
 		cout << "Empleado agregado a la plantilla\n";
 	}
 	
-	cout << "Empleado " << nuevaPersona->nom << " asignado al cargo: " << cargo << "\n";
+	cout << "Empleado" << nuevaPersona->nom << " asignado al cargo: " << cargo << "\n";
 	return OK;
 }
 
@@ -202,7 +203,7 @@ TipoRet EliminarPersona(Empresa &e, Cadena ci){
 // Elimina una persona de cédula ci de la empresa siempre y cuando la misma exista,
 // en caso contrario la operación quedará sin efecto.
 	
-	Empleado empleado = ObtenerEmpleadoPlantilla(e->plantilla, ci);
+	/* Empleado empleado = ObtenerEmpleadoPlantilla(e->plantilla, ci);
 	if (empleado != NULL) {
 		//Cargo cargoActualizar = empleado->cargo;
 		Persona persona = empleado->persona;
@@ -227,7 +228,7 @@ TipoRet EliminarPersona(Empresa &e, Cadena ci){
 		return OK;
 	} else 
 		return ERROR;
-
+ */
 
 	return NO_IMPLEMENTADA;
 }
@@ -244,8 +245,13 @@ TipoRet ListarPersonas(Empresa e, Cadena cargo){
 // Dado un cargo listar las personas asignadas al mismo ordenadas por fecha de alta a la empresa. 
 // Lista todas las personas asignadas al cargo de nombre cargo. 
 
-	Cargo aBuscar = BuscarCargo(e->listaCargos, cargo);
-	ImprimirCargoListaEmp(aBuscar);
+	Cargo buscarCargo = BuscarCargo(e->listaCargos, cargo);
+	if (buscarCargo == NULL){
+		cout << " ERROR - Tiene que existir el cargo\n";
+		return ERROR;
+	}
+	
+	ImprimirCargoListaEmp(buscarCargo);
 
 	return OK;
 }

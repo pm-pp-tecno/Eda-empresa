@@ -58,4 +58,10 @@ ListaCargos CrearListaCargos(Cargo primerCargo);
 
 Cadena ObtenerCargo(Cargo cargo);
 
+void MostrarListaCargos(ListaCargos listaCargo);
+
+Cargo Head(ListaCargos listaCargo);
+
+ListaCargos Tail(ListaCargos listaCargo);
+
 #endif // CARGO_H

@@ -67,9 +67,24 @@ Cargo BuscarCargo(ListaCargos listaCargos, Cadena cargo){
 void MostrarCargo(Cargo cargo){
 // Muestra el nombreCargo del cargo parametro
 	if (cargo != NULL) 
-		cout << cargo->nombreCargo;
+		cout << " - "  << cargo->nombreCargo;
 }
 
+void MostrarListaCargos(ListaCargos listaCargo){
+	// recursion con mostrarCargo, necesitamos un tail y head
+	if(listaCargo != NULL){
+		MostrarCargo(Head(listaCargo));
+		MostrarListaCargos(Tail(listaCargo));
+	}
+}
+
+Cargo Head(ListaCargos listaCargo){
+	return listaCargo->cargo;
+}
+
+ListaCargos Tail(ListaCargos listaCargo){
+	return listaCargo->sig;
+}
 
 Cadena ObtenerCargo(Cargo cargo){
 // Muestra el nombreCargo del cargo parametro
@@ -145,19 +160,17 @@ void ImprimirCargoListaEmp(Cargo cargo){
 // PRE: cargo tiene una lista de empleados creada
 	ListaEmp listaEmp = cargo->empleados;
 	if (listaEmp != NULL){
-		
 		Cadena formato = new char[20];
 		strcpy(formato, "En linea");
-
+		cout << "Empleados:\n";
 		// Si solo hay 1 elemento
-		if (Head(listaEmp) == Head(Tail(listaEmp))){			
+		if (Tail(listaEmp) == NULL){			
 			MostrarEmpleado(Head(listaEmp), formato);
 		} else { // Hay mas de 1 elemento
 			ListaEmp iter = Ultimo(listaEmp);
-
 			while (iter != NULL){
-				MostrarEmpleado(Head(listaEmp), formato);
-				iter = ListaAnt(listaEmp);
+				MostrarEmpleado(Head(iter), formato);
+				iter = ListaAnt(iter);
 			}
 		}
 	} else 

@@ -93,6 +93,7 @@ void InsertarListaEmpleados(ListaEmp &empleados, Empleado empleado){
         nuevaListaEmpleados->sig = NULL;
         nuevaListaEmpleados->ant = NULL;
         nuevaListaEmpleados->ult = nuevaListaEmpleados;
+		empleados = nuevaListaEmpleados;
     }else{
         ListaEmp ultimo = empleados->ult;
         ListaEmp nuevo = new(lista_empleados);
@@ -103,6 +104,7 @@ void InsertarListaEmpleados(ListaEmp &empleados, Empleado empleado){
         empleados->ult = nuevo;
     }
 }
+
 
 
 void MostrarEmpleado(Empleado empleado, Cadena formato){
@@ -121,8 +123,8 @@ void MostrarEmpleado(Empleado empleado, Cadena formato){
 				cout << empleado->persona->alta << "\n";
 			break;
 		*/
-		cout << empleado->persona->ci << "-";
-		cout << empleado->persona->nom << "-";
+		cout << empleado->persona->ci << " -";
+		cout << empleado->persona->nom << " - ";
 		cout << empleado->alta << "\n";
 
 	}
