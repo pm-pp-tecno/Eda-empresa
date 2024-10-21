@@ -193,7 +193,7 @@ TipoRet AsignarPersona(Empresa &e, Cadena cargo, Cadena nom, Cadena ci){
 		cout << "Empleado agregado a la plantilla\n";
 	}
 	
-	cout << "Empleado" << nuevaPersona->nom << " asignado al cargo: " << cargo << "\n";
+	cout << "Empleado " << nuevaPersona->nom << " asignado al cargo: " << cargo << "\n";
 	return OK;
 }
 
@@ -201,6 +201,34 @@ TipoRet EliminarPersona(Empresa &e, Cadena ci){
 // Eliminar una persona de un cargo.
 // Elimina una persona de cédula ci de la empresa siempre y cuando la misma exista,
 // en caso contrario la operación quedará sin efecto.
+	
+	Empleado empleado = ObtenerEmpleadoPlantilla(e->plantilla, ci);
+	if (empleado != NULL) {
+		//Cargo cargoActualizar = empleado->cargo;
+		Persona persona = empleado->persona;
+		Cadena alta = empleado->alta;
+		
+		ListaEmp listaEmp = ObtenerCargoListaEmpleados(empleado->cargo);
+
+		EliminarEmpleadoListaEmpleados(listaEmp, ci);
+
+		
+		bool eliminadoPlantilla = EliminarEmpleadoPlantilla(e->plantilla, ci);
+
+		if (eliminadoPlantilla) {
+			cout << "Empleado ";
+			Cadena formato = new char[20];
+			strcpy(formato, "En linea");
+			MostrarEmpleado(empleado, formato);
+			cout << " eliminado de la Plantilla\n";
+		}
+
+		cout << "El empleado ya tiene un cargo\n";
+		return OK;
+	} else 
+		return ERROR;
+
+
 	return NO_IMPLEMENTADA;
 }
 

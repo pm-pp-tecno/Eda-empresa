@@ -145,6 +145,87 @@ bool BuscarEmpleadoPlantilla(Plantilla plantilla, Cadena ci){
 }
 
 
+Empleado ObtenerEmpleadoPlantilla(Plantilla plantilla, Cadena ci){
+	Empleado empleado = NULL;
+	bool encontre = false;
+	while (plantilla != NULL && !encontre) {
+		Cadena formato = new char[20];
+		strcpy(formato, "En linea");
+		MostrarEmpleado(plantilla->empleado, formato);
+		if (strcmp(plantilla->empleado->persona->ci, ci) == 0) {
+			encontre = true;
+			cout << "Empleado encontrado! ";
+			cout << empleado->persona->ci << " - ";
+			cout << empleado->persona->nom << " - ";
+			cout << empleado->alta << "\n";
+			return plantilla->empleado;
+		} else {
+			plantilla = plantilla->sig;
+		}
+	}
+	return empleado;
+}
+
+
+
+bool EliminarEmpleadoPlantilla(Plantilla &plantilla, Cadena ci){
+	bool encontre = false;
+	while (plantilla != NULL && !encontre) {
+		Cadena formato = new char[20];
+		strcpy(formato, "En linea");
+		MostrarEmpleado(plantilla->empleado, formato);
+		if (strcmp(plantilla->empleado->persona->ci, ci) == 0) {
+			
+
+			// TODO: Eliminar empleado
+
+
+			encontre = true;
+		} else {
+			plantilla = plantilla->sig;
+		}
+	}
+	return encontre;
+}
+
+
+bool EliminarEmpleadoListaEmpleados(ListaEmp &listaEmp, Cadena ci){
+	bool encontre = false;
+	while (listaEmp != NULL && !encontre) {
+		Cadena formato = new char[20];
+		strcpy(formato, "En linea");
+		MostrarEmpleado(listaEmp->empleado, formato);
+		if (strcmp(listaEmp->empleado->persona->ci, ci) == 0) {
+
+			Empleado empleado = listaEmp->empleado;
+			ListaEmp aux = listaEmp;
+
+			listaEmp->ant->sig = listaEmp->sig;
+
+			// eliminar:
+			// Eliminar aux.
+
+
+			// Esto no se si deberia hacerlo aca. Ver como borro en Plantilla ----
+			// ci y nombre
+			// Persona y alta. Cargo no deberiamos eliminarlo. Poner puntero a NULL?
+			// Empleado
+			// Esto no se si deberia hacerlo aca. Ver como borro en Plantilla ----
+
+			
+			
+			// Actualizar puntero principal a la lista de empleados
+
+
+			encontre = true;
+		} else {
+			listaEmp = listaEmp->sig;
+		}
+	}
+	return encontre;
+}
+
+
 Empleado Head(ListaEmp empleados){
 // Retorna el primer elemento de la lista.
 // Pre: l no vacia.

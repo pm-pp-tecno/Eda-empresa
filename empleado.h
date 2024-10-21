@@ -64,6 +64,12 @@ void MostrarEmpleado(Empleado empleado, Cadena Formato);
 
 bool BuscarEmpleadoPlantilla(Plantilla plantilla, Cadena ci);
 
+Empleado ObtenerEmpleadoPlantilla(Plantilla plantilla, Cadena ci);
+
+bool EliminarEmpleadoPlantilla(Plantilla &plantilla, Cadena ci);
+
+bool EliminarEmpleadoListaEmpleados(ListaEmp &listaEmp, Cadena ci);
+
 
 Empleado Head(ListaEmp empleados);
 
