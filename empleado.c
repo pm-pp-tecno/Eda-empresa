@@ -68,10 +68,15 @@ Plantilla CrearPlantilla(Empleado empleado){
 
 void AsignarEmpleadoPlantilla(Plantilla &plantilla, Empleado empleado){
     Plantilla recorre = plantilla;
+	cout << "AsignarEmpleadoPlantilla (empleado.c)\n";
+	Cadena formato = new char[20];
+	strcpy(formato, "En linea");
     while (recorre->sig != NULL){
+		MostrarEmpleado(plantilla->empleado, formato);
         recorre = recorre->sig;
     }
     Plantilla nuevoEmpleado = new(tipo_plantilla);
+    nuevoEmpleado->empleado = empleado;
     nuevoEmpleado->sig = NULL;
     nuevoEmpleado->ant = recorre;
     recorre->sig = nuevoEmpleado;
