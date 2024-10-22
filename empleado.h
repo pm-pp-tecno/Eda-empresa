@@ -8,41 +8,14 @@
 // empleado.h
 // Modulo de Definición del empleado
 
-#include "cargo.h"
 #include "definiciones.h"
 
+typedef struct tipo_cargo* Cargo;
 
 typedef struct tipo_persona* Persona;
 typedef struct tipo_empleado* Empleado;
 typedef struct lista_empleados* ListaEmp;
 typedef struct tipo_plantilla* Plantilla;
-
-struct tipo_persona{
-	Cadena ci;
-	Cadena nom;
-};
-
-struct tipo_empleado{
-	Persona persona;
-	Cadena alta;
-	Cargo cargo;
-};
-
-// Lista de empleados de un CARGO
-struct lista_empleados{
-	Empleado empleado;
-	ListaEmp sig;
-	ListaEmp ant;
-	ListaEmp ult; // ultimo elemento de la lista. Solo se actualiza el 1er elemento
-};
-
-// Plantilla general de empleados en la empresa
-// Lista ordenada contiene a todos los empleados
-struct tipo_plantilla{
-	Empleado empleado;
-	Plantilla sig;
-	Plantilla ant;
-};
 
 Persona CrearPersona(Cadena nom, Cadena ci);
 

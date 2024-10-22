@@ -10,6 +10,7 @@
 
 
 #include "definiciones.h"
+#include "cargo.h"
 
 // typedef arbol_emp* ArbolEmp;
 

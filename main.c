@@ -15,7 +15,7 @@ using namespace std;
 
 
 int main (){
-	Empresa e;
+	Empresa e = NULL;
 	bool creado = false;
 	char * comando = new (char[MAX_COMANDO]);
 	char * pch, * pch1, * pch2, *pch3;

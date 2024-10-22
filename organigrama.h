@@ -13,10 +13,6 @@
 #include "cargo.h"
 #include "empresa.h"
 
-#include <cstring>
-#include <iostream>
-
-
 typedef struct arbol_emp* ArbolEmp;
 
 

@@ -5,8 +5,8 @@
 // empresa.c
 // Modulo de Implementacion de la Empresa
 
-#include "cargo.h"
 #include "empleado.h"
+#include "cargo.h"
 #include "organigrama.h"
 #include "empresa.h"
 
@@ -143,10 +143,6 @@ TipoRet ListarJerarquia(Empresa e){
 }
 
 TipoRet AsignarPersona(Empresa &e, Cadena cargo, Cadena nom, Cadena ci){
-// Asignar una persona a un cargo, si este existe.
-// Asigna una persona de nombre nom  y cédula de identidad ci al cargo cargo
-// siempre que el cargo exista en la empresa y esa persona no este asignada a
-// ese u otro cargo, en caso contrario la operación quedará sin efecto.
 	if (e == NULL){
 		cout << "La empresa no esta creada\n";
 		return ERROR;
@@ -158,7 +154,6 @@ TipoRet AsignarPersona(Empresa &e, Cadena cargo, Cadena nom, Cadena ci){
 		return ERROR;
 	}
 
-
 	bool encontreEmpleado = BuscarEmpleadoPlantilla(e->plantilla, ci);
 	if (encontreEmpleado) {
 		cout << "El empleado ya tiene un cargo\n";
@@ -167,24 +162,13 @@ TipoRet AsignarPersona(Empresa &e, Cadena cargo, Cadena nom, Cadena ci){
 
 	cout << "Empleado no encontrado en la Plantilla\n";
 
-/*
-	Plantilla plantilla = e->plantilla;
-	while (plantilla != NULL) {
-		if (strcmp(plantilla->empleado->persona->ci, ci) == 0) {
-			cout << "El empleado ya tiene un cargo\n";
-			return ERROR;
-		} else {
-			plantilla = plantilla->sig;
-		}
-	}
-*/
-
-
 	Persona nuevaPersona = CrearPersona(nom, ci);
 	cout << "Persona Creada\n";
+
 	Empleado nuevoEmpleado = CrearEmpleado(nuevaPersona, cargoEncontrado);
 	cout << "Empleado Creado\n";
-	InsertarListaEmpleados(cargoEncontrado->empleados, nuevoEmpleado);
+
+	InsertarEmpleadoListaEmpleados(cargoEncontrado, nuevoEmpleado);
 	
 	if (e->plantilla == NULL){
 		e->plantilla = CrearPlantilla(nuevoEmpleado);
@@ -194,7 +178,7 @@ TipoRet AsignarPersona(Empresa &e, Cadena cargo, Cadena nom, Cadena ci){
 		cout << "Empleado agregado a la plantilla\n";
 	}
 	
-	cout << "Empleado" << nuevaPersona->nom << " asignado al cargo: " << cargo << "\n";
+	cout << "Empleado" << nom << " asignado al cargo: " << cargo << "\n";
 	return OK;
 }
 
@@ -203,7 +187,7 @@ TipoRet EliminarPersona(Empresa &e, Cadena ci){
 // Elimina una persona de cédula ci de la empresa siempre y cuando la misma exista,
 // en caso contrario la operación quedará sin efecto.
 	
-	cout << "Eliminar Persona\n";
+	/* cout << "Eliminar Persona\n";
 
 	Empleado empleado = ObtenerEmpleadoPlantilla(e->plantilla, ci);
 	
@@ -243,9 +227,7 @@ TipoRet EliminarPersona(Empresa &e, Cadena ci){
 		
 		return OK;
 	} else 
-		return ERROR;
- 
-
+		return ERROR; */
 	//return NO_IMPLEMENTADA;
 }
 

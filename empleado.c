@@ -13,7 +13,7 @@
 
 using namespace std;
 
-/* struct tipo_persona{
+struct tipo_persona{
 	Cadena ci;
 	Cadena nom;
 };
@@ -38,7 +38,7 @@ struct tipo_plantilla{
 	Empleado empleado;
 	Plantilla sig;
 	Plantilla ant;
-}; */
+};
 
 Persona CrearPersona(Cadena nom, Cadena ci){
 	Persona nuevaPersona = new(tipo_persona);
@@ -87,6 +87,7 @@ ListaEmp CrearListaEmpleados(){
 }
 
 void InsertarListaEmpleados(ListaEmp &empleados, Empleado empleado){
+	cout << "entro a inserta Lista empleados";
     if (empleados == NULL){
         ListaEmp nuevaListaEmpleados = new(lista_empleados);
         nuevaListaEmpleados->empleado = empleado;
@@ -94,6 +95,7 @@ void InsertarListaEmpleados(ListaEmp &empleados, Empleado empleado){
         nuevaListaEmpleados->ant = NULL;
         nuevaListaEmpleados->ult = nuevaListaEmpleados;
 		empleados = nuevaListaEmpleados;
+		cout << "Es el primero empleado de la lista\n";
     }else{
         ListaEmp ultimo = empleados->ult;
         ListaEmp nuevo = new(lista_empleados);
@@ -102,6 +104,7 @@ void InsertarListaEmpleados(ListaEmp &empleados, Empleado empleado){
         nuevo->ant = ultimo;
         ultimo->sig = nuevo;
         empleados->ult = nuevo;
+		cout << "Hay mas de un empleado en la lista\n";
     }
 }
 

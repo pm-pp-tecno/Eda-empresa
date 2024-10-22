@@ -13,7 +13,7 @@
 using namespace std;
 
 
-/* struct tipo_cargo{
+struct tipo_cargo{
 	Cadena nombreCargo;
 	ListaEmp empleados;
 };
@@ -23,9 +23,7 @@ struct lista_cargos{
 	Cargo padre;
 	ListaCargos sig;
 	ListaCargos ant;
-}; */
-
-
+}; 
 
 bool isEmptyListaCargos(ListaCargos listaCargos){
 	return listaCargos == NULL;
@@ -100,6 +98,13 @@ ListaEmp ObtenerListaEmpleadosCargo(Cargo cargo){
 	else return NULL;
 }
 
+
+void InsertarEmpleadoListaEmpleados(Cargo cargo, Empleado empleado){
+	if (cargo->empleados == NULL){
+		cargo->empleados = CrearListaEmpleados();
+	}
+	InsertarListaEmpleados(cargo->empleados, empleado);
+}
 
 ListaCargos CrearListaCargos(Cargo primerCargo){
 // Inicializa la lista de cargos.
