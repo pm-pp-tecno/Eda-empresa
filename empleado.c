@@ -185,7 +185,7 @@ bool EliminarEmpleadoPlantilla(Plantilla &plantilla, Cadena ci){
 		if (strcmp(iter->empleado->persona->ci, ci) == 0) {
 			
 
-			Empleado empleado = iter->empleado;
+			//Empleado empleado = iter->empleado;
 			//EliminarEmpleado(empleado);
 			
 			// Solo hay 1 elemento
@@ -238,7 +238,7 @@ bool EliminarEmpleadoListaEmpleados(ListaEmp &listaEmp, Cadena ci){
 		//MostrarEmpleado(iter->empleado, formato);
 		if (strcmp(iter->empleado->persona->ci, ci) == 0) {
 			
-			Empleado empleado = iter->empleado;
+			//Empleado empleado = iter->empleado;
 			//EliminarEmpleado(empleado);
 			
 			// Solo hay 1 elemento
