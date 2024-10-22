@@ -12,3 +12,19 @@ AsignarPersona(cargo, 4000000, Mariano)
 
 AsignarPersona(nuevoCargo, 4000001, Diego)
 
+
+
+
+TEST EliminarPersona
+
+CrearOrg(cargo)
+
+AsignarPersona(cargo, 5000000, Pepe)
+
+AsignarPersona(cargo, 4000000, Mariano)
+
+EliminarPersona(5000000)
+
+
+
+

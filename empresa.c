@@ -203,17 +203,25 @@ TipoRet EliminarPersona(Empresa &e, Cadena ci){
 // Elimina una persona de cédula ci de la empresa siempre y cuando la misma exista,
 // en caso contrario la operación quedará sin efecto.
 	
-	/* Empleado empleado = ObtenerEmpleadoPlantilla(e->plantilla, ci);
+	cout << "Eliminar Persona\n";
+
+	Empleado empleado = ObtenerEmpleadoPlantilla(e->plantilla, ci);
+	
+	Cadena formato = new char[20];
+	strcpy(formato, "En linea");
+	
+	cout << "Eliminar empleado: ";
+	MostrarEmpleado(empleado, formato);
+	
 	if (empleado != NULL) {
 		//Cargo cargoActualizar = empleado->cargo;
 		Persona persona = empleado->persona;
 		Cadena alta = empleado->alta;
 		
-		ListaEmp listaEmp = ObtenerCargoListaEmpleados(empleado->cargo);
+		ListaEmp listaEmp = ObtenerListaEmpleadosCargo(empleado->cargo);
 
-		EliminarEmpleadoListaEmpleados(listaEmp, ci);
+		//EliminarEmpleadoListaEmpleados(listaEmp, ci);
 
-		
 		bool eliminadoPlantilla = EliminarEmpleadoPlantilla(e->plantilla, ci);
 
 		if (eliminadoPlantilla) {
@@ -224,13 +232,21 @@ TipoRet EliminarPersona(Empresa &e, Cadena ci){
 			cout << " eliminado de la Plantilla\n";
 		}
 
-		cout << "El empleado ya tiene un cargo\n";
+		
+		bool eliminadoEmpleado = EliminarEmpleado(empleado);
+
+		if (eliminadoEmpleado) {
+			cout << "Empleado eliminado del Sistema\n";
+		} else 
+			return ERROR;
+
+		
 		return OK;
 	} else 
 		return ERROR;
- */
+ 
 
-	return NO_IMPLEMENTADA;
+	//return NO_IMPLEMENTADA;
 }
 
 TipoRet ReasignarPersona(Empresa &e, Cadena cargo, Cadena ci){

@@ -93,6 +93,13 @@ Cadena ObtenerCargo(Cargo cargo){
 	else return NULL;
 }
 
+ListaEmp ObtenerListaEmpleadosCargo(Cargo cargo){
+// Muestra la lista de empleados del cargo parametro
+	if (cargo != NULL) 
+		return cargo->empleados;
+	else return NULL;
+}
+
 
 ListaCargos CrearListaCargos(Cargo primerCargo){
 // Inicializa la lista de cargos.

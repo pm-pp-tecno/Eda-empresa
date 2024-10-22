@@ -150,16 +150,17 @@ bool BuscarEmpleadoPlantilla(Plantilla plantilla, Cadena ci){
 Empleado ObtenerEmpleadoPlantilla(Plantilla plantilla, Cadena ci){
 	Empleado empleado = NULL;
 	bool encontre = false;
+	cout << "ObtenerEmpleadoPlantilla (empleado.c):\n";
+	cout << "Buscando empleado en Plantilla...\n";
+	
 	while (plantilla != NULL && !encontre) {
 		Cadena formato = new char[20];
 		strcpy(formato, "En linea");
-		MostrarEmpleado(plantilla->empleado, formato);
+		//MostrarEmpleado(plantilla->empleado, formato);
 		if (strcmp(plantilla->empleado->persona->ci, ci) == 0) {
 			encontre = true;
-			cout << "Empleado encontrado! ";
-			cout << empleado->persona->ci << " - ";
-			cout << empleado->persona->nom << " - ";
-			cout << empleado->alta << "\n";
+			cout << "Empleado encontrado!: ";
+			MostrarEmpleado(plantilla->empleado, formato);
 			return plantilla->empleado;
 		} else {
 			plantilla = plantilla->sig;
@@ -172,60 +173,130 @@ Empleado ObtenerEmpleadoPlantilla(Plantilla plantilla, Cadena ci){
 
 bool EliminarEmpleadoPlantilla(Plantilla &plantilla, Cadena ci){
 	bool encontre = false;
-	while (plantilla != NULL && !encontre) {
+	cout << "EliminarEmpleadoPlantilla (empleado.c) - Elimino empleado de la Plantilla:\n";
+	cout << "Buscando empleado en Plantilla...\n";
+
+	Plantilla iter = plantilla;
+
+	while (iter != NULL && !encontre) {
 		Cadena formato = new char[20];
 		strcpy(formato, "En linea");
-		MostrarEmpleado(plantilla->empleado, formato);
-		if (strcmp(plantilla->empleado->persona->ci, ci) == 0) {
+		MostrarEmpleado(iter->empleado, formato);
+		if (strcmp(iter->empleado->persona->ci, ci) == 0) {
 			
 
-			// TODO: Eliminar empleado
+			Empleado empleado = iter->empleado;
+			//EliminarEmpleado(empleado);
+			
+			// Solo hay 1 elemento
+			if (iter->ant == NULL && iter->sig == NULL){
+				cout << "Elimino solo 1 elemento. Plantilla vacia\n";
+				plantilla = NULL;
+				delete iter;
+			} else { // + de 1 elemento
+				cout << "Hay mas de 1 elemento en la Plantilla\n";
+				Plantilla aux = iter;
+				
+				// Es el primer elemento
+				if (iter == plantilla){
+					// Actualizo el puntero principal a la Plantilla
+					plantilla = iter->sig;
+					plantilla->ant = NULL;
+				} else {
+					iter->ant->sig = iter->sig;
 
+					if (iter->sig != NULL){
+						iter->sig->ant = iter->ant;
+					}
+
+				}
+
+				delete aux;
+			}
 
 			encontre = true;
 		} else {
-			plantilla = plantilla->sig;
+			iter = iter->sig;
 		}
 	}
 	return encontre;
 }
+
 
 
 bool EliminarEmpleadoListaEmpleados(ListaEmp &listaEmp, Cadena ci){
+// Elimina un empleado de una lista de empleados
 	bool encontre = false;
-	while (listaEmp != NULL && !encontre) {
-		Cadena formato = new char[20];
-		strcpy(formato, "En linea");
-		MostrarEmpleado(listaEmp->empleado, formato);
-		if (strcmp(listaEmp->empleado->persona->ci, ci) == 0) {
+	Cadena formato = new char[20];
+	strcpy(formato, "En linea");
+	cout << "EliminarEmpleadoListaEmpleados (empleado.c) - Empleado a eliminar:\n";
 
-			Empleado empleado = listaEmp->empleado;
-			ListaEmp aux = listaEmp;
+	ListaEmp iter = listaEmp;
 
-			listaEmp->ant->sig = listaEmp->sig;
+	while (iter != NULL && !encontre) {
 
-			// eliminar:
-			// Eliminar aux.
-
-
-			// Esto no se si deberia hacerlo aca. Ver como borro en Plantilla ----
-			// ci y nombre
-			// Persona y alta. Cargo no deberiamos eliminarlo. Poner puntero a NULL?
-			// Empleado
-			// Esto no se si deberia hacerlo aca. Ver como borro en Plantilla ----
-
+		//MostrarEmpleado(iter->empleado, formato);
+		if (strcmp(iter->empleado->persona->ci, ci) == 0) {
 			
+			Empleado empleado = iter->empleado;
+			//EliminarEmpleado(empleado);
 			
-			// Actualizar puntero principal a la lista de empleados
+			// Solo hay 1 elemento
+			if (iter->ant == NULL && iter->sig == NULL){
+				cout << "Elimino solo 1 elemento. Lista vacia\n";
+				listaEmp = NULL;
+				delete iter;
+			} else { // + de 1 elemento
+				cout << "Hay mas de 1 elemento en la lista\n";
+				ListaEmp aux = iter;
+				
+				// Es el primer elemento
+				if (iter == listaEmp){
+					// Actualizo el puntero principal a la lista de empleados
+					listaEmp = iter->sig;
+					listaEmp->ant = NULL;
+				} else {
+					iter->ant->sig = iter->sig;
 
+					if (iter->sig != NULL){
+						iter->sig->ant = iter->ant;
+					}
+
+				}
+
+				delete aux;
+			}
 
 			encontre = true;
 		} else {
-			listaEmp = listaEmp->sig;
+			iter = iter->sig;
 		}
 	}
+	//cout << "Salgo de EliminarEmpleadoListaEmpleados\n";
 	return encontre;
 }
+
+
+bool EliminarEmpleado(Empleado &empleado){
+	bool elimine = false;
+	if (empleado != NULL) {
+		Cadena formato = new char[20];
+		strcpy(formato, "En linea");
+		cout << "Empleado eliminado: ";
+		MostrarEmpleado(empleado, formato);
+		
+		delete empleado->persona->ci;
+		delete empleado->persona->nom;
+		delete empleado->persona;
+		delete empleado->alta;
+		delete empleado;
+
+		elimine = true;
+	} else
+		cout << "El empleado no existe\n";
+	return elimine;
+}
+
 
 
 Empleado Head(ListaEmp empleados){

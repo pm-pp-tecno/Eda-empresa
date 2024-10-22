@@ -70,6 +70,7 @@ bool EliminarEmpleadoPlantilla(Plantilla &plantilla, Cadena ci);
 
 bool EliminarEmpleadoListaEmpleados(ListaEmp &listaEmp, Cadena ci);
 
+bool EliminarEmpleado(Empleado &empleado);
 
 Empleado Head(ListaEmp empleados);
 

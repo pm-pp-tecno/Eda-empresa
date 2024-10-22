@@ -124,7 +124,7 @@ int main (){
 				pch = strtok (NULL, "( ,)\n");
 				if (pch != NULL){
 					if (creado){
-						ret = EliminarCargo(e, pch);
+						ret = EliminarPersona(e, pch);
 						ejecutado = true;
 					}else
 						cout << " - ERROR: para ejecutar el comando el organigrama debe estar creado.\n";

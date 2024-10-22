@@ -58,6 +58,8 @@ ListaCargos CrearListaCargos(Cargo primerCargo);
 
 Cadena ObtenerCargo(Cargo cargo);
 
+ListaEmp ObtenerListaEmpleadosCargo(Cargo cargo);
+
 void MostrarListaCargos(ListaCargos listaCargo);
 
 Cargo Head(ListaCargos listaCargo);
