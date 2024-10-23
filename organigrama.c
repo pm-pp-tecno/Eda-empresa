@@ -54,3 +54,31 @@ void InsertarCargoOrganigrama(ArbolEmp organigrama, Cargo cargoPadre, Cargo nuev
     }
 }
 
+
+
+/*
+
+void destruir(arbol &a){
+    if (!vacia(a)){
+        destruir(a->ph);
+        destruir(a->sh);
+        delete(a);
+        a = NULL;
+    }
+}
+
+
+void eliminar(int x, arbol &a){
+    if (a != NULL){
+        if (a->dato == x){
+            arbol aux = a;
+            a = a->sh;
+            destruir(aux);  // return true;
+        }else{
+            eliminar(x, a->sh);
+            eiminar(x, a->ph);
+        }   
+    }   
+}
+
+*/
