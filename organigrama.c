@@ -7,6 +7,7 @@
 // Modulo de Implementacion del organigrama
 
 #include "organigrama.h"
+#include "empresa.h"
 #include <cstring>
 #include <iostream>
 
@@ -54,31 +55,25 @@ void InsertarCargoOrganigrama(ArbolEmp organigrama, Cargo cargoPadre, Cargo nuev
     }
 }
 
+TipoRet EliminarOrg(Empresa &e){
+// Eliminar el organigrama, elimina toda la estructura del organigrama, liberando la memoria asignada.
+//Post: Elimina ArbolEmp, Listacargos, ListaEmp, y finalmente los nodos y Empleados en Plantilla.
+    
+    //ELimina ArbolEmp
+    EliminarArbolEmp(&e->organigrama);
+    
 
 
-/*
 
-void destruir(arbol &a){
-    if (!vacia(a)){
-        destruir(a->ph);
-        destruir(a->sh);
-        delete(a);
-        a = NULL;
+
+	return NO_IMPLEMENTADA;
+}
+
+void EliminarArbolEmp(ArbolEmp &e->organigrama){
+    if (e->organigrama != NULL){
+        EliminarArbolEmp(e->organigrama->ph);
+        EliminarArbolEmp(e->organigrama->sh);
+        delete(e->organigrama);
+        e->organigrama = NULL;
     }
 }
-
-
-void eliminar(int x, arbol &a){
-    if (a != NULL){
-        if (a->dato == x){
-            arbol aux = a;
-            a = a->sh;
-            destruir(aux);  // return true;
-        }else{
-            eliminar(x, a->sh);
-            eiminar(x, a->ph);
-        }   
-    }   
-}
-
-*/
