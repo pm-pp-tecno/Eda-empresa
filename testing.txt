@@ -21,10 +21,16 @@ CrearOrg(cargo)
 
 AsignarPersona(cargo, 5000000, Pepe)
 
+ListarPersonas(cargo)
+
 AsignarPersona(cargo, 4000000, Mariano)
+
+ListarPersonas(cargo)
 
 EliminarPersona(5000000)
 
+ListarPersonas(cargo)
 
+EliminarPersona(4000000)
 
-
+ListarPersonas(cargo)
