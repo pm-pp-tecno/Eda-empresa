@@ -11,7 +11,6 @@
 
 #include "definiciones.h"
 #include "cargo.h"
-#include "empresa.h"
 
 typedef struct arbol_emp* ArbolEmp;
 
@@ -20,11 +19,11 @@ ArbolEmp CrearOrganigrama(Cargo primerCargo);
 // crea el organigrama con el primer cargo
 
 
-void InsertarCargoOrganigrama(ArbolEmp organigrama, Cargo cargoPadre, Cargo nuevoCargo);
+void InsertarCargoOrganigrama(ArbolEmp &organigrama, Cargo cargoPadre, Cargo nuevoCargo);
 // inserta el nuevoCargo como el primer hijo de cargoPadre en el organigrama
 
 
-void EliminarArbolEmp(ArbolEmp &e->organigrama);
+void EliminarArbolEmp(ArbolEmp &organigrama);
 //ELimina nodos de un arbol finitario.
 
 

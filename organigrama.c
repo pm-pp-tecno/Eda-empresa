@@ -7,7 +7,6 @@
 // Modulo de Implementacion del organigrama
 
 #include "organigrama.h"
-#include "empresa.h"
 #include <cstring>
 #include <iostream>
 
@@ -36,7 +35,7 @@ ArbolEmp CrearOrganigrama(Cargo primerCargo){
 }
 
 
-void InsertarCargoOrganigrama(ArbolEmp organigrama, Cargo cargoPadre, Cargo nuevoCargo){
+void InsertarCargoOrganigrama(ArbolEmp &organigrama, Cargo cargoPadre, Cargo nuevoCargo){
 // inserta el nuevoCargo como el primer hijo de cargoPadre
     if (organigrama != NULL){
         Cadena nombreCargo = ObtenerCargo(nuevoCargo);
@@ -56,11 +55,11 @@ void InsertarCargoOrganigrama(ArbolEmp organigrama, Cargo cargoPadre, Cargo nuev
 }
 
 
-void EliminarArbolEmp(ArbolEmp &e->organigrama){
-    if (e->organigrama != NULL){
-        EliminarArbolEmp(e->organigrama->ph);
-        EliminarArbolEmp(e->organigrama->sh);
-        delete(e->organigrama);
-        e->organigrama = NULL;
+void EliminarArbolEmp(ArbolEmp &organigrama){
+    if (organigrama != NULL){
+        EliminarArbolEmp(organigrama->ph);
+        EliminarArbolEmp(organigrama->sh);
+        delete(organigrama);
+        organigrama = NULL;
     }
 }

@@ -78,14 +78,6 @@ void MostrarListaCargos(ListaCargos listaCargo){
 	}
 }
 
-Cargo Head(ListaCargos listaCargo){
-	return listaCargo->cargo;
-}
-
-ListaCargos Tail(ListaCargos listaCargo){
-	return listaCargo->sig;
-}
-
 Cadena ObtenerCargo(Cargo cargo){
 // Muestra el nombreCargo del cargo parametro
 	if (cargo != NULL) 
@@ -110,7 +102,7 @@ void InsertarEmpleadoListaEmpleados(Cargo &cargo, Empleado empleado){
 	if (isEmptyListaEmpleados(cargo)){
 		cargo->empleados = CrearListaEmpleados(empleado);
 	} else {
-		//InsertarListaEmpleados(cargo->queueEmpleados, empleado);
+		InsertarListaEmpleados(cargo, empleado);
 	}
 }
 
@@ -196,6 +188,22 @@ void ImprimirCargoListaEmp(Cargo cargo){
 		}
 	} else 
 		cout << "Lista de empleados vacia.\n";
+}
+
+
+
+QueueEmp OtenerQueue(Cargo cargo){
+	return cargo->queueEmpleados;
+}
+
+
+
+Cargo Head(ListaCargos listaCargo){
+	return listaCargo->cargo;
+}
+
+ListaCargos Tail(ListaCargos listaCargo){
+	return listaCargo->sig;
 }
 
 

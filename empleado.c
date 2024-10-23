@@ -100,42 +100,33 @@ ListaEmp CrearListaEmpleados(Empleado primerEmpleado){
 }
 
 void InsertarListaEmpleados(Cargo &cargo, Empleado empleado){
-// PRE: la lis
-	
-	
-	// TODO: cambiar ListaEmp &empleados por queueEmp.
+// PRE: lista de empleados de cargo no esta vacia
+
 	// obtengo el puntero al ultimo, genero uno nuevo y actualizo queueEmp->ultimo;
 	// tengo que chequear si no tengo que cambiar el primero tb.
 	
+
+	// cambiado temporalmente pq elimino empleados->ult;
+
 	
+	QueueEmp queue = OtenerQueue(cargo);
+	ListaEmp ultimo = Ultimo(queue);
+
+	ListaEmp nuevo = new(lista_empleados);
+	nuevo->empleado = empleado;
+	nuevo->sig = NULL;
+	nuevo->ant = ultimo;
+	ultimo->sig = nuevo;
+
+	// Actualizo queue
+	queue->ult = ultimo;
+
+
+
+
+
+
 	/*
-		
-	if (cargo->queueEmpleados == NULL){
-        ListaEmp nuevaListaEmpleados = new(lista_empleados);
-        nuevaListaEmpleados->empleado = empleado;
-        nuevaListaEmpleados->sig = NULL;
-        nuevaListaEmpleados->ant = NULL;
-		empleados = nuevaListaEmpleados;
-		
-    }else{
-        //ListaEmp ultimo = empleados->ult;
-		
-
-		// cambiado temporalmente pq elimino empleados->ult;
-		ListaEmp ultimo = empleados;
-        ListaEmp nuevo = new(lista_empleados);
-        nuevo->empleado = empleado;
-        nuevo->sig = NULL;
-        nuevo->ant = ultimo;
-        ultimo->sig = nuevo;
-        //empleados->ult = nuevo;
-    }
-
-
-
-
-
-
 
 	
 	if (queueEmpleados == NULL){
