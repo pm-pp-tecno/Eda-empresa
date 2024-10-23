@@ -60,6 +60,10 @@ void EliminarArbolEmp(ArbolEmp &organigrama){
     if (organigrama != NULL){
         EliminarArbolEmp(organigrama->ph);
         EliminarArbolEmp(organigrama->sh);
+
+        // aca deberiamos de llamar a eliminar listaEmpleados
+        // EliminarListaEmpleados(organigrama->cargo);
+
         delete(organigrama);
         organigrama = NULL;
     }
