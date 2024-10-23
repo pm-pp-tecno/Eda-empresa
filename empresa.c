@@ -90,7 +90,7 @@ TipoRet EliminarOrg(Empresa &e){
 	// elimina ListaCargos de la empresa
 	EliminarListaCargos(e->listaCargos);
 
-	// eliminamos la plantilla
+	// eliminamos la plantilla, eliminamos con los empleados
 	EliminarPlantilla(e->plantilla);
 
 	delete e;

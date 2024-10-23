@@ -64,5 +64,8 @@ ListaEmp Primero(QueueEmp queueEmpleados);
 
 ListaEmp Ultimo(QueueEmp queueEmpleados);
 
+void EliminarPlantilla(Plantilla &plantilla);
+
+void EliminarListaEmpleados(ListaEmp &listaEmpleados);
 
 #endif

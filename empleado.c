@@ -397,6 +397,9 @@ ListaEmp Ultimo(QueueEmp queueEmpleados){
 }
 
 void EliminarPlantilla(Plantilla &plantilla){
+	while (plantilla->ant != NULL){
+		plantilla = plantilla->ant;
+	}
 	while (plantilla != NULL){
 		Plantilla temp = plantilla;
 		plantilla = plantilla->sig;
@@ -406,12 +409,16 @@ void EliminarPlantilla(Plantilla &plantilla){
 }
 
 void EliminarListaEmpleados(ListaEmp &listaEmpleados) {
+	while (listaEmpleados->ant != NULL){
+		listaEmpleados = listaEmpleados->ant;
+	}
     while (listaEmpleados != NULL) {
         ListaEmp temp = listaEmpleados;
         listaEmpleados = listaEmpleados->sig;
-        delete temp->empleado;
+        //delete temp->empleado;
         delete temp;
     }
+	
 }
 /*
 void ImprimirListaEmp(ListaEmp empleados){

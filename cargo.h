@@ -46,6 +46,6 @@ Cargo Head(ListaCargos listaCargo);
 
 ListaCargos Tail(ListaCargos listaCargo);
 
-void EliminarListaCargos(ListaCargos & listaCargos);
+void EliminarListaCargos(ListaCargos &listaCargos);
 
 #endif // CARGO_H
