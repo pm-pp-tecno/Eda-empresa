@@ -23,4 +23,9 @@ ArbolEmp CrearOrganigrama(Cargo primerCargo);
 void InsertarCargoOrganigrama(ArbolEmp organigrama, Cargo cargoPadre, Cargo nuevoCargo);
 // inserta el nuevoCargo como el primer hijo de cargoPadre en el organigrama
 
+
+void EliminarArbolEmp(ArbolEmp &e->organigrama);
+//ELimina nodos de un arbol finitario.
+
+
 #endif

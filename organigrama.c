@@ -55,19 +55,6 @@ void InsertarCargoOrganigrama(ArbolEmp organigrama, Cargo cargoPadre, Cargo nuev
     }
 }
 
-TipoRet EliminarOrg(Empresa &e){
-// Eliminar el organigrama, elimina toda la estructura del organigrama, liberando la memoria asignada.
-//Post: Elimina ArbolEmp, Listacargos, ListaEmp, y finalmente los nodos y Empleados en Plantilla.
-    
-    //ELimina ArbolEmp
-    EliminarArbolEmp(&e->organigrama);
-    
-
-
-
-
-	return NO_IMPLEMENTADA;
-}
 
 void EliminarArbolEmp(ArbolEmp &e->organigrama){
     if (e->organigrama != NULL){

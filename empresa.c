@@ -82,6 +82,12 @@ TipoRet CrearOrg(Empresa &e, Cadena cargo){
 
 TipoRet EliminarOrg(Empresa &e){
 // Eliminar el organigrama, elimina toda la estructura del organigrama, liberando la memoria asignada.
+//Post: Elimina ArbolEmp, Listacargos, ListaEmp, y finalmente los nodos y Empleados en Plantilla.
+    
+    //ELimina ArbolEmp
+    EliminarArbolEmp(&e->organigrama);
+
+	
 	return NO_IMPLEMENTADA;
 }
 
