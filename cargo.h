@@ -40,6 +40,7 @@ ListaEmp ObtenerListaEmpleadosCargo(Cargo cargo);
 
 void MostrarListaCargos(ListaCargos listaCargo);
 
+QueueEmp OtenerQueue(Cargo cargo);
 
 Cargo Head(ListaCargos listaCargo);
 
