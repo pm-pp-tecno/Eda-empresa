@@ -93,14 +93,17 @@ void AsignarEmpleadoPlantilla(Plantilla &plantilla, Empleado empleado){
 }
 
 ListaEmp CrearListaEmpleados(Empleado primerEmpleado){
-	ListaEmp nuevaListaEmpleados = new(lista_empleados);
-	nuevaListaEmpleados->empleado = primerEmpleado;
-	nuevaListaEmpleados->sig = NULL;
-	nuevaListaEmpleados->ant = NULL;
+	if (primerEmpleado != NULL){
+		ListaEmp nuevaListaEmpleados = new(lista_empleados);
+		nuevaListaEmpleados->empleado = primerEmpleado;
+		nuevaListaEmpleados->sig = NULL;
+		nuevaListaEmpleados->ant = NULL;
+		return nuevaListaEmpleados;
+	} else {
+		return NULL;
+	}
 
-	// TODO: actualizar punteros de queue pri y ult a este puntero.
-
-    return nuevaListaEmpleados;
+    
 }
 
 void InsertarListaEmpleados(Cargo &cargo, Empleado empleado){
@@ -385,7 +388,7 @@ Empleado Head(ListaEmp empleados){
 ListaEmp Tail(ListaEmp empleados){
 // Retorna el "resto" de la lista.
 // Pre: l no vacia.
-	cout << "Tail ListaEmp\n";
+	//cout << "Tail ListaEmp\n";
 	return empleados->ant;
 }
 
@@ -439,10 +442,13 @@ void ImprimirListaEmp(ListaEmp empleados){
 ListaEmp ActualizarListaEmp(ListaEmp &listaEmpleados, ListaEmp nuevo){
 // PRE: listaEmpleados no vacia
 // Suma un nuevo nodo a listaEmp y devuelve el puntero al ultimo
-	nuevo->ant = listaEmpleados;
-
-	listaEmpleados->sig = nuevo;
-	return nuevo;
+	if (nuevo != NULL){
+		nuevo->ant = listaEmpleados;
+		listaEmpleados->sig = nuevo;
+		return nuevo;
+	} else {
+		return NULL;
+	}
 
 }
 

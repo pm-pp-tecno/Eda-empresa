@@ -228,6 +228,13 @@ TipoRet EliminarPersona(Empresa &e, Cadena ci){
 
 		EliminarEmpleadoListaEmpleados(listaEmp, ci);
 
+		if (isEmptyListaEmpleados(cargo)){
+			cout << "La lista quedo vacia. Actualizo punteros.\n";
+			//listaEmp = CrearListaEmpleados(NULL);
+			//listaEmp = NULL;
+			ActualizarCargoListaEmp(cargo, NULL);
+		}
+
 		bool eliminadoPlantilla = EliminarEmpleadoPlantilla(e->plantilla, ci);
 
 		if (eliminadoPlantilla) {
