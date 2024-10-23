@@ -296,7 +296,7 @@ bool EliminarEmpleadoListaEmpleados(ListaEmp &listaEmp, Cadena ci){
 	bool encontre = false;
 	Cadena formato = new char[20];
 	strcpy(formato, "En linea");
-	cout << "EliminarEmpleadoListaEmpleados (empleado.c) - Empleado a eliminar:\n";
+	cout << "EliminarEmpleadoListaEmpleados (empleado.c):\n";
 
 	ListaEmp iter = listaEmp;
 
@@ -313,8 +313,11 @@ bool EliminarEmpleadoListaEmpleados(ListaEmp &listaEmp, Cadena ci){
 			// Solo hay 1 elemento
 			if (iter->ant == NULL && iter->sig == NULL){
 				cout << "Elimino solo 1 elemento. Lista vacia\n";
+				listaEmp->ant = NULL;
+				listaEmp->sig = NULL;
+				listaEmp->empleado = NULL;
 				listaEmp = NULL;
-				delete iter;
+				delete listaEmp;
 			} else { // + de 1 elemento
 				cout << "Hay mas de 1 elemento en la lista\n";
 				ListaEmp aux = iter; // Me guardo el nodo ListaEmp a eliminar al final
