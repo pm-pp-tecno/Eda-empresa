@@ -16,6 +16,7 @@ using namespace std;
 struct tipo_cargo{
 	Cadena nombreCargo;
 	ListaEmp empleados;
+	QueueEmp queueEmpleados;	// punteros a lista de empleados
 };
 
 struct lista_cargos{
@@ -39,7 +40,8 @@ Cargo CrearCargo(Cadena nuevoCargo){
 	
 
 	// Lista de empleados en el cargo
-	ListaEmp empleados = CrearListaEmpleados();
+	//ListaEmp empleados = CrearListaEmpleados(nuevo);
+	ListaEmp empleados = NULL;
 	nuevo->empleados = empleados;
 	return nuevo;
 }
@@ -99,11 +101,17 @@ ListaEmp ObtenerListaEmpleadosCargo(Cargo cargo){
 }
 
 
-void InsertarEmpleadoListaEmpleados(Cargo cargo, Empleado empleado){
+void InsertarEmpleadoListaEmpleados(Cargo &cargo, Empleado empleado){
+	/*
 	if (cargo->empleados == NULL){
 		cargo->empleados = CrearListaEmpleados();
 	}
-	InsertarListaEmpleados(cargo->empleados, empleado);
+	*/
+	if (isEmptyListaEmpleados(cargo)){
+		cargo->empleados = CrearListaEmpleados(empleado);
+	} else {
+		//InsertarListaEmpleados(cargo->queueEmpleados, empleado);
+	}
 }
 
 ListaCargos CrearListaCargos(Cargo primerCargo){
@@ -171,6 +179,7 @@ void ImprimirCargoListaEmp(Cargo cargo){
 // Imprime la lista de empleados de una cargo
 // PRE: cargo tiene una lista de empleados creada
 	ListaEmp listaEmp = cargo->empleados;
+	QueueEmp queueEmpleados = cargo->queueEmpleados;
 	if (listaEmp != NULL){
 		Cadena formato = new char[20];
 		strcpy(formato, "En linea");
@@ -179,7 +188,7 @@ void ImprimirCargoListaEmp(Cargo cargo){
 		if (Tail(listaEmp) == NULL){			
 			MostrarEmpleado(Head(listaEmp), formato);
 		} else { // Hay mas de 1 elemento
-			ListaEmp iter = Ultimo(listaEmp);
+			ListaEmp iter = Ultimo(queueEmpleados);
 			while (iter != NULL){
 				MostrarEmpleado(Head(iter), formato);
 				iter = ListaAnt(iter);

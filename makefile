@@ -12,4 +12,4 @@ organigrama.o: organigrama.c organigrama.h cargo.h empresa.h
 	g++ -c organigrama.c
 clean:
 	rm *.o
-	rm programa.bin
+	rm programa

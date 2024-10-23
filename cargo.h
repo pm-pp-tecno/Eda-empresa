@@ -19,7 +19,7 @@ void MostrarCargo(Cargo cargo);
 void InsertarCargoOrdenado(ListaCargos &listaCargos, Cargo cargoPadre, Cargo nuevoCargo);
 // Inserta el nuevo cargo de forma ordenada en la listaCargos
 
-void InsertarEmpleadoListaEmpleados(Cargo cargo, Empleado empleado);
+void InsertarEmpleadoListaEmpleados(Cargo &cargo, Empleado empleado);
 
 void ImprimirCargoListaEmp(Cargo cargo);
 // Imprime la lista de empleados de una cargo

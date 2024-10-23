@@ -15,6 +15,7 @@ typedef struct tipo_cargo* Cargo;
 typedef struct tipo_persona* Persona;
 typedef struct tipo_empleado* Empleado;
 typedef struct lista_empleados* ListaEmp;
+typedef struct queue_empleados* QueueEmp;
 typedef struct tipo_plantilla* Plantilla;
 
 Persona CrearPersona(Cadena nom, Cadena ci);
@@ -25,12 +26,12 @@ Empleado CrearEmpleado(Persona persona, Cargo cargo);
 Plantilla CrearPlantilla(Empleado empleado);
 // Inicializa la plantilla.
 
-ListaEmp CrearListaEmpleados();
+ListaEmp CrearListaEmpleados(Empleado primerEmpleado);
 // Inicializa lista de empleados en un cargo.
 
 void AsignarEmpleadoPlantilla(Plantilla &plantilla, Empleado empleado);
 
-void InsertarListaEmpleados(ListaEmp &empleados, Empleado empleado);
+void InsertarListaEmpleados(Cargo &cargo, Empleado empleado);
 
 void MostrarEmpleado(Empleado empleado, Cadena Formato);
 // Imprime los datos del empleado con el formato Formato
@@ -45,13 +46,17 @@ bool EliminarEmpleadoListaEmpleados(ListaEmp &listaEmp, Cadena ci);
 
 bool EliminarEmpleado(Empleado &empleado);
 
+bool isEmptyListaEmpleados(Cargo cargo);
+
 Empleado Head(ListaEmp empleados);
 
 ListaEmp Tail(ListaEmp empleados);
 
 ListaEmp ListaAnt(ListaEmp empleados);
 
-ListaEmp Ultimo(ListaEmp empleados);
+ListaEmp Primero(QueueEmp queueEmpleados);
+
+ListaEmp Ultimo(QueueEmp queueEmpleados);
 
 
 #endif

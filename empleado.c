@@ -29,7 +29,13 @@ struct lista_empleados{
 	Empleado empleado;
 	ListaEmp sig;
 	ListaEmp ant;
-	ListaEmp ult; // ultimo elemento de la lista. Solo se actualiza el 1er elemento
+	//ListaEmp ult; // ultimo elemento de la lista. Solo se actualiza el 1er elemento
+};
+
+// Punteros a primero y ultimo de lista de empleados de un CARGO
+struct queue_empleados{
+	ListaEmp pri; // ultimo elemento de la lista de empleados
+	ListaEmp ult; // ultimo elemento de la lista de empleados
 };
 
 // Plantilla general de empleados en la empresa
@@ -82,30 +88,78 @@ void AsignarEmpleadoPlantilla(Plantilla &plantilla, Empleado empleado){
     recorre->sig = nuevoEmpleado;
 }
 
-ListaEmp CrearListaEmpleados(){
-    return NULL;
+ListaEmp CrearListaEmpleados(Empleado primerEmpleado){
+	ListaEmp nuevaListaEmpleados = new(lista_empleados);
+	nuevaListaEmpleados->empleado = primerEmpleado;
+	nuevaListaEmpleados->sig = NULL;
+	nuevaListaEmpleados->ant = NULL;
+
+	// TODO: actualizar punteros de queue pri y ult a este puntero.
+
+    return nuevaListaEmpleados;
 }
 
-void InsertarListaEmpleados(ListaEmp &empleados, Empleado empleado){
-	cout << "entro a inserta Lista empleados";
-    if (empleados == NULL){
+void InsertarListaEmpleados(Cargo &cargo, Empleado empleado){
+// PRE: la lis
+	
+	
+	// TODO: cambiar ListaEmp &empleados por queueEmp.
+	// obtengo el puntero al ultimo, genero uno nuevo y actualizo queueEmp->ultimo;
+	// tengo que chequear si no tengo que cambiar el primero tb.
+	
+	
+	/*
+		
+	if (cargo->queueEmpleados == NULL){
         ListaEmp nuevaListaEmpleados = new(lista_empleados);
         nuevaListaEmpleados->empleado = empleado;
         nuevaListaEmpleados->sig = NULL;
         nuevaListaEmpleados->ant = NULL;
-        nuevaListaEmpleados->ult = nuevaListaEmpleados;
 		empleados = nuevaListaEmpleados;
-		cout << "Es el primero empleado de la lista\n";
+		
     }else{
-        ListaEmp ultimo = empleados->ult;
+        //ListaEmp ultimo = empleados->ult;
+		
+
+		// cambiado temporalmente pq elimino empleados->ult;
+		ListaEmp ultimo = empleados;
         ListaEmp nuevo = new(lista_empleados);
         nuevo->empleado = empleado;
         nuevo->sig = NULL;
         nuevo->ant = ultimo;
         ultimo->sig = nuevo;
-        empleados->ult = nuevo;
-		cout << "Hay mas de un empleado en la lista\n";
+        //empleados->ult = nuevo;
     }
+
+
+
+
+
+
+
+	
+	if (queueEmpleados == NULL){
+        ListaEmp nuevaListaEmpleados = new(lista_empleados);
+        nuevaListaEmpleados->empleado = empleado;
+        nuevaListaEmpleados->sig = NULL;
+        nuevaListaEmpleados->ant = NULL;
+		empleados = nuevaListaEmpleados;
+		
+    }else{
+        //ListaEmp ultimo = empleados->ult;
+		
+
+		// cambiado temporalmente pq elimino empleados->ult;
+		ListaEmp ultimo = empleados;
+        ListaEmp nuevo = new(lista_empleados);
+        nuevo->empleado = empleado;
+        nuevo->sig = NULL;
+        nuevo->ant = ultimo;
+        ultimo->sig = nuevo;
+        //empleados->ult = nuevo;
+    }
+
+	*/
 }
 
 
@@ -301,6 +355,11 @@ bool EliminarEmpleado(Empleado &empleado){
 }
 
 
+bool isEmptyListaEmpleados(Cargo cargo){
+	ListaEmp listaEmp = ObtenerListaEmpleadosCargo(cargo);
+	return listaEmp == NULL;
+}
+
 
 Empleado Head(ListaEmp empleados){
 // Retorna el primer elemento de la lista.
@@ -322,11 +381,18 @@ ListaEmp ListaAnt(ListaEmp empleados){
 }
 
 
-ListaEmp Ultimo(ListaEmp empleados){
+ListaEmp Primero(QueueEmp queueEmpleados){
 // Retorna el "resto" de la lista.
 // Pre: l no vacia.
-	return empleados->ult;
+	return queueEmpleados->pri;
 }
+
+ListaEmp Ultimo(QueueEmp queueEmpleados){
+// Retorna el "resto" de la lista.
+// Pre: l no vacia.
+	return queueEmpleados->ult;
+}
+
 
 /*
 void ImprimirListaEmp(ListaEmp empleados){

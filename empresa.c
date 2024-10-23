@@ -168,7 +168,15 @@ TipoRet AsignarPersona(Empresa &e, Cadena cargo, Cadena nom, Cadena ci){
 	Empleado nuevoEmpleado = CrearEmpleado(nuevaPersona, cargoEncontrado);
 	cout << "Empleado Creado\n";
 
-	InsertarEmpleadoListaEmpleados(cargoEncontrado, nuevoEmpleado);
+	//InsertarEmpleadoListaEmpleados(cargoEncontrado, nuevoEmpleado);
+
+	if (isEmptyListaEmpleados(cargoEncontrado)){
+		CrearListaEmpleados(nuevoEmpleado);
+	}
+
+	InsertarListaEmpleados(cargoEncontrado, nuevoEmpleado);
+
+
 	
 	if (e->plantilla == NULL){
 		e->plantilla = CrearPlantilla(nuevoEmpleado);
@@ -228,7 +236,7 @@ TipoRet EliminarPersona(Empresa &e, Cadena ci){
 		return OK;
 	} else 
 		return ERROR; */
-	//return NO_IMPLEMENTADA;
+	return NO_IMPLEMENTADA;
 }
 
 TipoRet ReasignarPersona(Empresa &e, Cadena cargo, Cadena ci){
