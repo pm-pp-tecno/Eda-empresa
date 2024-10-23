@@ -218,6 +218,18 @@ Empleado ObtenerEmpleadoPlantilla(Plantilla plantilla, Cadena ci){
 }
 
 
+Persona ObtenerPersona(Empleado empleado){
+	return empleado->persona;
+}
+
+Cadena ObtenerAlta(Empleado empleado){
+	return empleado->alta;
+}
+
+Cargo ObtenerCargoEmpleado(Empleado empleado){
+	return empleado->cargo;
+}
+
 
 bool EliminarEmpleadoPlantilla(Plantilla &plantilla, Cadena ci){
 	bool encontre = false;

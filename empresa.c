@@ -83,9 +83,9 @@ TipoRet CrearOrg(Empresa &e, Cadena cargo){
 TipoRet EliminarOrg(Empresa &e){
 // Eliminar el organigrama, elimina toda la estructura del organigrama, liberando la memoria asignada.
 //Post: Elimina ArbolEmp, Listacargos, ListaEmp, y finalmente los nodos y Empleados en Plantilla.
-    
+	
     //ELimina ArbolEmp
-    EliminarArbolEmp(&e->organigrama);
+    EliminarArbolEmp(e->organigrama);
 
 	
 	return NO_IMPLEMENTADA;
@@ -174,15 +174,16 @@ TipoRet AsignarPersona(Empresa &e, Cadena cargo, Cadena nom, Cadena ci){
 	Empleado nuevoEmpleado = CrearEmpleado(nuevaPersona, cargoEncontrado);
 	cout << "Empleado Creado\n";
 
-	//InsertarEmpleadoListaEmpleados(cargoEncontrado, nuevoEmpleado);
+	InsertarEmpleadoListaEmpleados(cargoEncontrado, nuevoEmpleado);
 
+/*
 	if (isEmptyListaEmpleados(cargoEncontrado)){
-		CrearListaEmpleados(nuevoEmpleado);
+		ListaEmp empleados = CrearListaEmpleados(nuevoEmpleado);
+		cargoEncontrado->empleados = CrearListaEmpleados(nuevoEmpleado);
 	}
 
 	InsertarListaEmpleados(cargoEncontrado, nuevoEmpleado);
-
-
+*/
 	
 	if (e->plantilla == NULL){
 		e->plantilla = CrearPlantilla(nuevoEmpleado);
@@ -201,7 +202,7 @@ TipoRet EliminarPersona(Empresa &e, Cadena ci){
 // Elimina una persona de cédula ci de la empresa siempre y cuando la misma exista,
 // en caso contrario la operación quedará sin efecto.
 	
-	/* cout << "Eliminar Persona\n";
+	cout << "Eliminar Persona\n";
 
 	Empleado empleado = ObtenerEmpleadoPlantilla(e->plantilla, ci);
 	
@@ -213,10 +214,11 @@ TipoRet EliminarPersona(Empresa &e, Cadena ci){
 	
 	if (empleado != NULL) {
 		//Cargo cargoActualizar = empleado->cargo;
-		Persona persona = empleado->persona;
-		Cadena alta = empleado->alta;
+		Persona persona = ObtenerPersona(empleado);
+		Cadena alta = ObtenerAlta(empleado);
 		
-		ListaEmp listaEmp = ObtenerListaEmpleadosCargo(empleado->cargo);
+		Cargo cargo = ObtenerCargoEmpleado(empleado);
+		ListaEmp listaEmp = ObtenerListaEmpleadosCargo(cargo);
 
 		//EliminarEmpleadoListaEmpleados(listaEmp, ci);
 
@@ -241,8 +243,8 @@ TipoRet EliminarPersona(Empresa &e, Cadena ci){
 		
 		return OK;
 	} else 
-		return ERROR; */
-	return NO_IMPLEMENTADA;
+		return ERROR; 
+	//return NO_IMPLEMENTADA;
 }
 
 TipoRet ReasignarPersona(Empresa &e, Cadena cargo, Cadena ci){
