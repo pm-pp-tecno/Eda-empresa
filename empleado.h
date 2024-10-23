@@ -15,7 +15,7 @@ typedef struct tipo_cargo* Cargo;
 typedef struct tipo_persona* Persona;
 typedef struct tipo_empleado* Empleado;
 typedef struct lista_empleados* ListaEmp;
-typedef struct queue_empleados* QueueEmp;
+//typedef struct queue_empleados* QueueEmp;
 typedef struct tipo_plantilla* Plantilla;
 
 Persona CrearPersona(Cadena nom, Cadena ci);
@@ -60,9 +60,12 @@ ListaEmp Tail(ListaEmp empleados);
 
 ListaEmp ListaAnt(ListaEmp empleados);
 
+/*
 ListaEmp Primero(QueueEmp queueEmpleados);
 
 ListaEmp Ultimo(QueueEmp queueEmpleados);
+*/
+
 
 void EliminarPlantilla(Plantilla &plantilla);
 

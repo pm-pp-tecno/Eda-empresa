@@ -32,11 +32,15 @@ struct lista_empleados{
 	//ListaEmp ult; // ultimo elemento de la lista. Solo se actualiza el 1er elemento
 };
 
+
+/*
 // Punteros a primero y ultimo de lista de empleados de un CARGO
 struct queue_empleados{
 	ListaEmp pri; // ultimo elemento de la lista de empleados
 	ListaEmp ult; // ultimo elemento de la lista de empleados
 };
+*/
+
 
 // Plantilla general de empleados en la empresa
 // Lista ordenada contiene a todos los empleados
@@ -100,7 +104,8 @@ ListaEmp CrearListaEmpleados(Empleado primerEmpleado){
 }
 
 void InsertarListaEmpleados(Cargo &cargo, Empleado empleado){
-// PRE: lista de empleados de cargo no esta vacia
+// PRE: lista de empleados de cargo no esta vacia. Sino voy a crearLista con el primer empleo
+// PRE: empleado no vacio
 
 	// obtengo el puntero al ultimo, genero uno nuevo y actualizo queueEmp->ultimo;
 	// tengo que chequear si no tengo que cambiar el primero tb.
@@ -109,8 +114,8 @@ void InsertarListaEmpleados(Cargo &cargo, Empleado empleado){
 	// cambiado temporalmente pq elimino empleados->ult;
 
 	
-	QueueEmp queue = OtenerQueue(cargo);
-	ListaEmp ultimo = Ultimo(queue);
+	//QueueEmp queue = OtenerQueue(cargo);
+	ListaEmp ultimo = Ultimo(cargo);
 
 	ListaEmp nuevo = new(lista_empleados);
 	nuevo->empleado = empleado;
@@ -119,7 +124,7 @@ void InsertarListaEmpleados(Cargo &cargo, Empleado empleado){
 	ultimo->sig = nuevo;
 
 	// Actualizo queue
-	queue->ult = ultimo;
+	//queue->ult = ultimo;
 
 
 
@@ -383,19 +388,13 @@ ListaEmp ListaAnt(ListaEmp empleados){
 	return empleados->ant;
 }
 
-
+/*
 ListaEmp Primero(QueueEmp queueEmpleados){
 // Retorna el "resto" de la lista.
 // Pre: l no vacia.
 	return queueEmpleados->pri;
 }
-
-ListaEmp Ultimo(QueueEmp queueEmpleados){
-// Retorna el "resto" de la lista.
-// Pre: l no vacia.
-	return queueEmpleados->ult;
-}
-
+*/
 void EliminarPlantilla(Plantilla &plantilla){
 	while (plantilla->ant != NULL){
 		plantilla = plantilla->ant;

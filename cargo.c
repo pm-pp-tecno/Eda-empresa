@@ -15,8 +15,8 @@ using namespace std;
 
 struct tipo_cargo{
 	Cadena nombreCargo;
-	ListaEmp empleados;
-	QueueEmp queueEmpleados;	// punteros a lista de empleados
+	ListaEmp empleados;	// siempre apunta al ultimo de la lista
+	//QueueEmp queueEmpleados;	// punteros a lista de empleados
 };
 
 struct lista_cargos{
@@ -171,7 +171,7 @@ void ImprimirCargoListaEmp(Cargo cargo){
 // Imprime la lista de empleados de una cargo
 // PRE: cargo tiene una lista de empleados creada
 	ListaEmp listaEmp = cargo->empleados;
-	QueueEmp queueEmpleados = cargo->queueEmpleados;
+	//QueueEmp queueEmpleados = cargo->queueEmpleados;
 	if (listaEmp != NULL){
 		Cadena formato = new char[20];
 		strcpy(formato, "En linea");
@@ -180,7 +180,7 @@ void ImprimirCargoListaEmp(Cargo cargo){
 		if (Tail(listaEmp) == NULL){			
 			MostrarEmpleado(Head(listaEmp), formato);
 		} else { // Hay mas de 1 elemento
-			ListaEmp iter = Ultimo(queueEmpleados);
+			ListaEmp iter = cargo->empleados; // ultimo de la lista
 			while (iter != NULL){
 				MostrarEmpleado(Head(iter), formato);
 				iter = ListaAnt(iter);
@@ -191,11 +191,11 @@ void ImprimirCargoListaEmp(Cargo cargo){
 }
 
 
-
+/*
 QueueEmp OtenerQueue(Cargo cargo){
 	return cargo->queueEmpleados;
 }
-
+*/
 
 
 Cargo Head(ListaCargos listaCargo){
@@ -204,6 +204,12 @@ Cargo Head(ListaCargos listaCargo){
 
 ListaCargos Tail(ListaCargos listaCargo){
 	return listaCargo->sig;
+}
+
+ListaEmp Ultimo(Cargo cargo){
+// Retorna el ultimo nodo de la lista de empleados.
+// Pre: cargo no vacio.
+	return cargo->empleados;
 }
 
 
@@ -245,7 +251,7 @@ void EliminarListaCargos(ListaCargos &listaCargos){
 		//Cargos cargo = listaCargos;
 		EliminarListaEmpleados(listaCargos->cargo->empleados); // obtener listaEmp del cargo
 
-		delete aux->cargo->queueEmpleados;
+		//delete aux->cargo->queueEmpleados;
 		delete aux->cargo->nombreCargo;
 		//delete aux->cargo;
 		//delete aux->padre;
@@ -253,6 +259,8 @@ void EliminarListaCargos(ListaCargos &listaCargos){
 		delete aux;
 	}
 }
+
+
 
 /* while(aux->cargo->queueEmpleados->pri != aux->cargo->queueEmpleados->ult){
 	ListaEmp aBorrar = aux->cargo->queueEmpleados->pri;
