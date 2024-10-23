@@ -7,6 +7,7 @@
 // Modulo de Implementacion del organigrama
 
 #include "organigrama.h"
+#include "empresa.h"
 #include <cstring>
 #include <iostream>
 

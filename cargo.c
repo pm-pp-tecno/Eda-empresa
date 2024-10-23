@@ -235,3 +235,26 @@ Cargo buscar_cargo(ListaCargos listaCargos, Cadena cargo) {
     return NULL;
 }
 */
+void EliminarListaCargos(ListaCargos & listaCargos){
+//Post: ELimina las listasCargo de una empresa
+	while(listaCargos->ant != NULL){ //Retrocede al primer elem. ListaCargos
+		listaCargos = listacargos->ant;
+	}
+	while(listaCargos->sig != NULL){
+		ListaCargos aux = listaCargos;
+		while(aux->cargo->queueEmpleados->pri != aux->cargo->queueEmpleados->ult){
+			ListaEmp aBorrar = aux->cargo->queueEmpleados->pri;
+			aux->cargo->queueEmpleados->pri = aux->cargo->queueEmpleados->pri->sig;
+			delete aBorrar;
+		}
+		delete aux->cargo->queueEmpleados->pri;
+		delete aux->cargo->queueEmpleados->ult;
+		delete aux->cargo->queueEmpleados;
+		delete aux->cargo->nombreCargo;
+		delete aux->cargo;
+		delete aux->padre;
+		listaCargos = listaCargos->sig;
+		delete aux;
+	}
+	delete listaCargos;
+}

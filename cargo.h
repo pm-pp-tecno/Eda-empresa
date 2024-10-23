@@ -40,11 +40,11 @@ ListaEmp ObtenerListaEmpleadosCargo(Cargo cargo);
 
 void MostrarListaCargos(ListaCargos listaCargo);
 
-QueueEmp OtenerQueue(Cargo cargo);
 
 Cargo Head(ListaCargos listaCargo);
 
 ListaCargos Tail(ListaCargos listaCargo);
 
+void EliminarListaCargos(ListaCargos & listaCargos);
 
 #endif // CARGO_H
