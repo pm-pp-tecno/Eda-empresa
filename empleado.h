@@ -71,4 +71,6 @@ void EliminarPlantilla(Plantilla &plantilla);
 
 void EliminarListaEmpleados(ListaEmp &listaEmpleados);
 
+ListaEmp ActualizarListaEmp(ListaEmp &listaEmpleados, ListaEmp nuevo);
+
 #endif

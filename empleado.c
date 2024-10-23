@@ -121,7 +121,9 @@ void InsertarListaEmpleados(Cargo &cargo, Empleado empleado){
 	nuevo->empleado = empleado;
 	nuevo->sig = NULL;
 	nuevo->ant = ultimo;
-	ultimo->sig = nuevo;
+	nuevo->ant->sig = nuevo;
+
+	ActualizarCargoListaEmp(cargo, nuevo);
 
 	// Actualizo queue
 	//queue->ult = ultimo;
@@ -303,6 +305,8 @@ bool EliminarEmpleadoListaEmpleados(ListaEmp &listaEmp, Cadena ci){
 		//MostrarEmpleado(iter->empleado, formato);
 		if (strcmp(iter->empleado->persona->ci, ci) == 0) {
 			
+			encontre = true;
+			
 			//Empleado empleado = iter->empleado;
 			//EliminarEmpleado(empleado);
 			
@@ -313,28 +317,28 @@ bool EliminarEmpleadoListaEmpleados(ListaEmp &listaEmp, Cadena ci){
 				delete iter;
 			} else { // + de 1 elemento
 				cout << "Hay mas de 1 elemento en la lista\n";
-				ListaEmp aux = iter;
+				ListaEmp aux = iter; // Me guardo el nodo ListaEmp a eliminar al final
 				
-				// Es el primer elemento
-				if (iter == listaEmp){
-					// Actualizo el puntero principal a la lista de empleados
-					listaEmp = iter->sig;
-					listaEmp->ant = NULL;
-				} else {
-					iter->ant->sig = iter->sig;
-
-					if (iter->sig != NULL){
-						iter->sig->ant = iter->ant;
+				if (iter == listaEmp){ // Es el ultimo elemento
+					// Actualizo el puntero al ultimo de la lista de empleados
+					listaEmp->ant->sig = NULL;
+					listaEmp = listaEmp->ant;
+				} else { // No es el ultimo, no actualizo puntero de la lista
+					
+					if (iter->ant != NULL){ // Si no es el primero
+						iter->ant->sig = iter->sig;
 					}
+					
+					// Como no era el ultimo iter->sig != NULL
+					iter->sig->ant = iter->ant;
 
 				}
 
 				delete aux;
 			}
 
-			encontre = true;
 		} else {
-			iter = iter->sig;
+			iter = iter->ant;
 		}
 	}
 	//cout << "Salgo de EliminarEmpleadoListaEmpleados\n";
@@ -378,7 +382,8 @@ Empleado Head(ListaEmp empleados){
 ListaEmp Tail(ListaEmp empleados){
 // Retorna el "resto" de la lista.
 // Pre: l no vacia.
-	return empleados->sig;
+	cout << "Tail ListaEmp\n";
+	return empleados->ant;
 }
 
 
@@ -427,4 +432,14 @@ void ImprimirListaEmp(ListaEmp empleados){
 	ImprimirListaEmp (empleados->ant);
 }
 */
+
+ListaEmp ActualizarListaEmp(ListaEmp &listaEmpleados, ListaEmp nuevo){
+// PRE: listaEmpleados no vacia
+// Suma un nuevo nodo a listaEmp y devuelve el puntero al ultimo
+	nuevo->ant = listaEmpleados;
+
+	listaEmpleados->sig = nuevo;
+	return nuevo;
+
+}
 

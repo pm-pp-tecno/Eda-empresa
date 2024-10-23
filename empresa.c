@@ -226,7 +226,7 @@ TipoRet EliminarPersona(Empresa &e, Cadena ci){
 		Cargo cargo = ObtenerCargoEmpleado(empleado);
 		ListaEmp listaEmp = ObtenerListaEmpleadosCargo(cargo);
 
-		//EliminarEmpleadoListaEmpleados(listaEmp, ci);
+		EliminarEmpleadoListaEmpleados(listaEmp, ci);
 
 		bool eliminadoPlantilla = EliminarEmpleadoPlantilla(e->plantilla, ci);
 
@@ -276,7 +276,7 @@ TipoRet ListarPersonas(Empresa e, Cadena cargo){
 	return OK;
 }
 
-TipoRet ListarSuperCargos (Empresa e, Cadena cargo){
+TipoRet ListarSuperCargos(Empresa e, Cadena cargo){
 // Dado un cargo listar los cargos que lo anteceden.
 // Lista todas los cargos que anteceden, en la jerarquía, al cargo de nombre cargo.
 	return NO_IMPLEMENTADA;

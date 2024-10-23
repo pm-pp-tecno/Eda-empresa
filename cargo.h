@@ -50,4 +50,6 @@ ListaEmp Ultimo(Cargo cargo);
 
 void EliminarListaCargos(ListaCargos &listaCargos);
 
+void ActualizarCargoListaEmp(Cargo &cargo, ListaEmp nuevo);
+
 #endif // CARGO_H

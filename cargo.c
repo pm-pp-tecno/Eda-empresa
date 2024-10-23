@@ -177,9 +177,11 @@ void ImprimirCargoListaEmp(Cargo cargo){
 		strcpy(formato, "En linea");
 		cout << "Empleados:\n";
 		// Si solo hay 1 elemento
-		if (Tail(listaEmp) == NULL){			
+		if (Tail(listaEmp) == NULL){
+			cout << "ImprimirCargoListaEmp (cargo.c) - Solo hay 1 elemento\n";		
 			MostrarEmpleado(Head(listaEmp), formato);
 		} else { // Hay mas de 1 elemento
+			cout << "ImprimirCargoListaEmp (cargo.c) - Hay mas de 1 elemento\n";	
 			ListaEmp iter = cargo->empleados; // ultimo de la lista
 			while (iter != NULL){
 				MostrarEmpleado(Head(iter), formato);
@@ -261,9 +263,9 @@ void EliminarListaCargos(ListaCargos &listaCargos){
 }
 
 
+void ActualizarCargoListaEmp(Cargo &cargo, ListaEmp nuevo){
+	//ListaEmp empleados = ObtenerListaEmpleadosCargo(cargo);
+	cargo->empleados = ActualizarListaEmp(cargo->empleados, nuevo);
 
-/* while(aux->cargo->queueEmpleados->pri != aux->cargo->queueEmpleados->ult){
-	ListaEmp aBorrar = aux->cargo->queueEmpleados->pri;
-	aux->cargo->queueEmpleados->pri = aux->cargo->queueEmpleados->pri->sig;
-	delete aBorrar;
-} */
+}
+
