@@ -263,6 +263,14 @@ void EliminarListaCargos(ListaCargos &listaCargos){
 }
 
 
+void EliminarEmpleadoListaEmpleadosCargo(Cargo &cargo, Cadena ci){
+	//ListaEmp listaEmp = cargo->empleados;
+	cargo->empleados = EliminarEmpleadoListaEmpleados(cargo->empleados, ci);
+}
+
+
+
+
 void ActualizarCargoListaEmp(Cargo &cargo, ListaEmp nuevo){
 	//ListaEmp empleados = ObtenerListaEmpleadosCargo(cargo);
 	cargo->empleados = ActualizarListaEmp(cargo->empleados, nuevo);

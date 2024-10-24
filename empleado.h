@@ -40,15 +40,19 @@ bool BuscarEmpleadoPlantilla(Plantilla plantilla, Cadena ci);
 
 Empleado ObtenerEmpleadoPlantilla(Plantilla plantilla, Cadena ci);
 
+
+/*
 Persona ObtenerPersona(Empleado empleado);
 
 Cadena ObtenerAlta(Empleado empleado);
+*/
+
 
 Cargo ObtenerCargoEmpleado(Empleado empleado);
 
 bool EliminarEmpleadoPlantilla(Plantilla &plantilla, Cadena ci);
 
-bool EliminarEmpleadoListaEmpleados(ListaEmp &listaEmp, Cadena ci);
+ListaEmp EliminarEmpleadoListaEmpleados(ListaEmp &listaEmp, Cadena ci);
 
 bool EliminarEmpleado(Empleado &empleado);
 

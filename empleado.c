@@ -227,7 +227,7 @@ Empleado ObtenerEmpleadoPlantilla(Plantilla plantilla, Cadena ci){
 	return empleado;
 }
 
-
+/*
 Persona ObtenerPersona(Empleado empleado){
 	return empleado->persona;
 }
@@ -235,6 +235,7 @@ Persona ObtenerPersona(Empleado empleado){
 Cadena ObtenerAlta(Empleado empleado){
 	return empleado->alta;
 }
+*/
 
 Cargo ObtenerCargoEmpleado(Empleado empleado){
 	return empleado->cargo;
@@ -294,7 +295,7 @@ bool EliminarEmpleadoPlantilla(Plantilla &plantilla, Cadena ci){
 
 
 
-bool EliminarEmpleadoListaEmpleados(ListaEmp &listaEmp, Cadena ci){
+ListaEmp EliminarEmpleadoListaEmpleados(ListaEmp &listaEmp, Cadena ci){
 // Elimina un empleado de una lista de empleados
 	bool encontre = false;
 	Cadena formato = new char[20];
@@ -321,6 +322,7 @@ bool EliminarEmpleadoListaEmpleados(ListaEmp &listaEmp, Cadena ci){
 				listaEmp->empleado = NULL;
 				listaEmp = NULL;
 				delete listaEmp;
+				return NULL;
 			} else { // + de 1 elemento
 				cout << "Hay mas de 1 elemento en la lista\n";
 				ListaEmp aux = iter; // Me guardo el nodo ListaEmp a eliminar al final
@@ -341,6 +343,7 @@ bool EliminarEmpleadoListaEmpleados(ListaEmp &listaEmp, Cadena ci){
 				}
 
 				delete aux;
+				//return listaEmp;
 			}
 
 		} else {
@@ -348,7 +351,8 @@ bool EliminarEmpleadoListaEmpleados(ListaEmp &listaEmp, Cadena ci){
 		}
 	}
 	//cout << "Salgo de EliminarEmpleadoListaEmpleados\n";
-	return encontre;
+	//return encontre;
+	return listaEmp;
 }
 
 

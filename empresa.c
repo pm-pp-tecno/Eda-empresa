@@ -209,24 +209,21 @@ TipoRet EliminarPersona(Empresa &e, Cadena ci){
 // en caso contrario la operación quedará sin efecto.
 	
 	cout << "Eliminar Persona\n";
-
 	Empleado empleado = ObtenerEmpleadoPlantilla(e->plantilla, ci);
 	
-	Cadena formato = new char[20];
-	strcpy(formato, "En linea");
-	
-	cout << "Eliminar empleado: ";
-	MostrarEmpleado(empleado, formato);
-	
 	if (empleado != NULL) {
+		cout << "Eliminar empleado: ";
+		Cadena formato = new char[20];
+		strcpy(formato, "En linea");
+		MostrarEmpleado(empleado, formato);
 		//Cargo cargoActualizar = empleado->cargo;
-		Persona persona = ObtenerPersona(empleado);
-		Cadena alta = ObtenerAlta(empleado);
+		//Persona persona = ObtenerPersona(empleado);
+		//Cadena alta = ObtenerAlta(empleado);
 		
 		Cargo cargo = ObtenerCargoEmpleado(empleado);
 		ListaEmp listaEmp = ObtenerListaEmpleadosCargo(cargo);
 
-		EliminarEmpleadoListaEmpleados(listaEmp, ci);
+		EliminarEmpleadoListaEmpleadosCargo(cargo, ci);
 
 		if (isEmptyListaEmpleados(cargo)){
 			cout << "La lista quedo vacia. Actualizo punteros.\n";
